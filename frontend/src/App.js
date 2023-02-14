@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from 'react';
+import PropertyList from './components/PropertyList.js'
 
 function App() {
+
+  const url = "http://localhost:9292/properties";
+  const [propertyList, setPropertyList] = useState([])
+
+  //Initial Fetch All Properties
+  useEffect(() => {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => setPropertyList(data))
+  },[])
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <PropertyList 
+            properties={propertyList}
+      />
     </div>
   );
 }
