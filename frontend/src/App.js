@@ -1,8 +1,12 @@
+import React, { useState, useEffect } from 'react';
+import {Switch, Route} from 'react-router-dom';
 
-import PropertyContainer from './components/PropertyContainer'
-import React, { useState, useEffect } from 'react'
+import PropertyContainer from './components/PropertyContainer';
+import Header from './components/Header'
 
-function App() {
+function App()
+{
+    //States  
     const [properties, setProperties] = useState([])
 
     useEffect(function ()
@@ -21,7 +25,16 @@ function App() {
 
     return (
         <div>
-            <PropertyContainer properties={properties} />
+            <Header/>
+
+            <Switch>
+
+              <Route path='/properties'>
+                <PropertyContainer properties={properties} />
+              </Route>
+
+            </Switch>
+
         </div>
     )
 }
