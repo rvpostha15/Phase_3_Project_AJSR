@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.title {
+  font-size: 70px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration:none;
+  color:#000;
+  display:block;
+  padding:13px;
+  margin-bottom: 50px;
+}
+
+
+.flex_container {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  width: auto;
+}
+
+.navbar {
+  margin: 10px;
+  text-decoration: none;
+  background: yellow;
+  color:#000;
+}
+
+.navbar:focus {
+  transform: rotate(6deg);
+  transition: transform .15s linear;
+  font-weight: bold;
+  font-size: 22px;
+}
