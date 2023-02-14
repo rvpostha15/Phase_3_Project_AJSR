@@ -35,6 +35,7 @@ function App()
             })
     }, [])
 
+    // IGNORE
     // const adminUser = {
     //     email: "admin@admin.com",
     //     password: "123admin"
