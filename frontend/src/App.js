@@ -1,26 +1,30 @@
-import React, {useEffect, useState} from 'react';
-import PropertyList from './components/PropertyList.js'
 
-function App() {
+import PropertyContainer from './PropertyContainer'
+import React, { useState, useEffect } from 'react'
 
-  const url = "http://localhost:9292/properties";
-  const [propertyList, setPropertyList] = useState([])
+function App()
+{
+    const [properties, setProperties] = useState([])
 
-  //Initial Fetch All Properties
-  useEffect(() => {
-    fetch(url)
-    .then(response => response.json())
-    .then(data => setPropertyList(data))
-  },[])
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/properties")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                return setProperties(data)
+            })
+    }, [])
 
-
-  return (
-    <div>
-      <PropertyList 
-            properties={propertyList}
-      />
-    </div>
-  );
+    return (
+        <div>
+            <PropertyContainer properties={properties} />
+        </div>
+    )
 }
 
 export default App;
