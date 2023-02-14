@@ -61,6 +61,7 @@ function App()
         //     console.log("details do not match")
         // }
 
+        // FOR JERROD - DO WE NEED MAPPEDUSERS!!
         const mappedUsers = userData.map(function (user)
         {
             if (user.email == details.email && user.password == details.password) {
