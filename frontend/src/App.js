@@ -43,6 +43,8 @@ function App()
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
+
+    // FOR JERROD
     const [error, setError] = useState("")
 
     function login(details)
