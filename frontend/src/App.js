@@ -1,9 +1,8 @@
 
-import PropertyContainer from './PropertyContainer'
+import PropertyContainer from './components/PropertyContainer'
 import React, { useState, useEffect } from 'react'
 
-function App()
-{
+function App() {
     const [properties, setProperties] = useState([])
 
     useEffect(function ()
