@@ -45,6 +45,7 @@ function App()
 
     function login(details)
     {
+        // IGNORE
         // console.log(details)
         // if (details.email == adminUser.email && details.password == adminUser.password) {
         //     console.log("logged in")
