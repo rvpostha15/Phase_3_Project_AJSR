@@ -27,6 +27,8 @@ code {
 .flex_container {
   display: flex;
   justify-content: space-evenly;
+  margin-left: 25%;
+  margin-right: 25%;
   text-align: center;
   width: auto;
 }
@@ -43,4 +45,19 @@ code {
   transition: transform .15s linear;
   font-weight: bold;
   font-size: 22px;
+}
+
+
+.property_card {
+  cursor: pointer;
+  border-color: #000;
+  display: inline-block;
+  padding: 5px;
+  margin: 1%;
+  background: red;
+}
+
+.property_title {
+  background-color: aquamarine;
+  text-align: center;
 }

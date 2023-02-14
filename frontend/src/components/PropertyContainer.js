@@ -5,6 +5,7 @@ function PropertyContainer({ properties })
     const mappedProperties = properties.map(function (property)
     {
         return <PropertyCard key={property.id} property={property} />
+
     })
     return (
         <div>
