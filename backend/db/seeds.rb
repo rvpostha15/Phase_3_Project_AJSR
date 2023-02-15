@@ -3,15 +3,15 @@ puts "🌱 Planting seeds..."
 
 ## User Seed Data
 User.create(
-    username: 'ron', password: 'password', first_name: 'Ron', last_name: 'Post', email_address: 'ron@example.com', phone_number:'8675309'
+    username: 'ron', password: 'password', first_name: 'Ron', last_name: 'Post', email: 'ron@example.com', phone_number:'8675309'
 )
 
 User.create(
-    username: 'jer', password: 'password', first_name: 'Jer', last_name: 'Bush', email_address: 'jer@example.com', phone_number:'4050624'
+    username: 'jer', password: 'password', first_name: 'Jer', last_name: 'Bush', email: 'jer@example.com', phone_number:'4050624'
 )
 
 User.create(
-    username: 'adi', password: 'password', first_name: 'Adiel', last_name: 'Eich', email_address: 'adi@example.com', phone_number:'4050624'
+    username: 'adi', password: 'password', first_name: 'Adiel', last_name: 'Eich', email: 'adi@example.com', phone_number:'4050624'
 )
 
 ## Landlord Seed Data 
