@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     end
 
     get '/users' do 
-        users = Users.all 
+        users = User.all 
         users.to_json
     end
 

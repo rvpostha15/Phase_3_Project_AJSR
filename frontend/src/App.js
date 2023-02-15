@@ -1,3 +1,6 @@
+
+import Login from "./Login"
+
 import React, { useState, useEffect } from 'react';
 import {Switch, Route} from 'react-router-dom';
 
@@ -17,7 +20,11 @@ function App() {
 
     //States  
     const [properties, setProperties] = useState([])
+
+    const [userData, setUserData] = useState([])
+
     const [currentProperty, setCurrentProperty] = useState(initialProperty)
+
 
    
 
@@ -34,6 +41,73 @@ function App() {
                 return setProperties(data)
             })
     }, [])
+
+
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/users")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                return setUserData(data)
+            })
+    }, [])
+
+    // IGNORE
+    // const adminUser = {
+    //     email: "admin@admin.com",
+    //     password: "123admin"
+    // }
+
+    // WORK THIS OUT JERROD
+    const [user, setUser] = useState({ name: "", email: "" })
+
+    // FOR JERROD
+    const [error, setError] = useState("")
+
+    function login(details)
+    {
+        // IGNORE
+        // console.log(details)
+        // if (details.email == adminUser.email && details.password == adminUser.password) {
+        //     console.log("logged in")
+        //     setUser({
+        //         name: details.name,
+        //         email: details.email
+        //     })
+        // } else {
+        //     console.log("details do not match")
+        // }
+
+        const mappedUsers = userData.map(function (user)
+        {
+            if (user.email == details.email && user.password == details.password) {
+                console.log("logged in")
+                setLoggedIn(true)
+                return setUser({
+                    name: details.name,
+                    email: details.email
+                })
+            } else {
+                console.log("details do not match")
+            }
+        })
+        // console.log(mappedUsers)
+    }
+
+
+    function logout()
+    {
+        console.log("Logout")
+    }
+
+    const [loggedIn, setLoggedIn] = useState(false)
+
+
     
     // console.log(currentProperty)
     return (
@@ -57,6 +131,7 @@ function App() {
                 </Route>
 
             </Switch>
+
 
         </div>
     )
