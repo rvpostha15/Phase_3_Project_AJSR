@@ -6,10 +6,5 @@ class User < ActiveRecord::Base
         "#{self.first_name} #{self.last_name}"
     end
 
-    # def self.email_login(e_login)
-    #     find_by(email: e_login)
-    # end
-
 end
 
-# User.find_by(email: "ron@example.com")

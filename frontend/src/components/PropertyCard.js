@@ -24,6 +24,7 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
             <p>State: {state}</p>
             <p>Price per night: {price_per_night}</p>
             <button>❤️</button>
+            <button>Book</button>
         </Link>
     )
 }

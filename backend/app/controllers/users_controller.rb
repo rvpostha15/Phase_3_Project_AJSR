@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
     end
 
+    # fetch current user data
     get '/users/:id' do
         user = User.find(params[:id])
         user.to_json

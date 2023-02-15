@@ -20,6 +20,7 @@ function App()
     const [loggedIn, setLoggedIn] = useState(false)
     const [userId, setUserId] = useState(null)
     const [currentUser, setCurrentUser] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -67,6 +68,15 @@ function App()
             .then((data) => setCurrentUser(data));
     }, [userId])
 
+    const changeSearch = (value) => {
+        setSearchTerm(value)
+    }
+
+    //Display Properties via Search: Title or State
+    const filteredProperties = properties.filter(p => (
+        p.title.toLowerCase().includes(searchTerm.toLowerCase()) || p.state.toLowerCase().includes(searchTerm.toLowerCase())
+    ))
+
     function login(details)
     {
         const mappedUsers = userData.map(function (user)
@@ -91,33 +101,36 @@ function App()
     return (
         <div className='App'>
             {(loggedIn === true) ? (
-                <>
-                    <Header
-                        setLoggedIn={setLoggedIn}
-                        currentUser={currentUser}
+
+            <>
+            <Header
+                setLoggedIn = {setLoggedIn}
+                currentUser = {currentUser}
+            />
+
+            <Switch>
+
+                <Route path='/properties/:id'>
+                    <CurrentProperty 
+                        currentProperty={currentProperty}
                     />
+                </Route>
 
-                    <Switch>
+                <Route path='/properties'>
+                    <PropertyContainer 
+                        properties={filteredProperties}
+                        setCurrentProperty={setCurrentProperty}
+                        currentProperty={currentProperty} 
+                        searchTerm={searchTerm}
+                        changeSearch={changeSearch}
+                    />
+                </Route>
 
-                        <Route path='/properties/:id'>
-                            <CurrentProperty
-                                currentProperty={currentProperty}
-                            />
-                        </Route>
-
-                        <Route path='/properties'>
-                            <PropertyContainer
-                                properties={properties}
-                                setCurrentProperty={setCurrentProperty}
-                                currentProperty={currentProperty}
-                            />
-                        </Route>
-
-                        <Route path='/:user'>
-                            <MyAccount
-                                currentUser={currentUser}
-                            />
-                        </Route>
+                <Route path='/:user'>
+                    <MyAccount 
+                         currentUser={currentUser}
+                    />
+                 </Route>
 
                     </Switch>
                 </>
