@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom' 
 
 
-function Header ({ setLoggedIn }) {
+function Header ({ setLoggedIn, currentUser }) {
 
     const handleLogout = () => {
         setLoggedIn(false)
@@ -14,7 +14,7 @@ function Header ({ setLoggedIn }) {
             <Link to = "/" className="title">StayOver</Link>
             <div className="flex_container">  
                 <NavLink to = "/properties" className="navbar" >Properties</NavLink>
-                <NavLink to = "/:user" className="navbar" >My Account</NavLink>
+                <NavLink to = {`/${currentUser.username}`} className="navbar" >My Account</NavLink>
                 {/* might be a problem with the favorites loading all properties b4 it can get to favorites */}
                 <NavLink to = "/properties/favorites" className="navbar">Favorites</NavLink>
             </div>

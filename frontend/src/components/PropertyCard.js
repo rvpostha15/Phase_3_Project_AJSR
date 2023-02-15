@@ -12,7 +12,7 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
 
     return (
         <Link
-            to = "/properties/:id" 
+            to ={`/properties/${title}`} 
             onClick={handlePropertyClick} 
             className="property_card"
         >

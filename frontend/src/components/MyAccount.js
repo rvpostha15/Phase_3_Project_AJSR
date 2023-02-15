@@ -1,7 +1,10 @@
 
 function MyAccount ({ currentUser }) {
+
 console.log(currentUser)
+
 const { email, first_name, last_name, phone_number, password, username, id } = currentUser
+
     return (
         <div>
         <p>Email Address: {email}</p>
@@ -12,7 +15,6 @@ const { email, first_name, last_name, phone_number, password, username, id } = c
         <p>Username: {username}</p>
         <p>Account Number: {id}</p>
         </div>
-
     )
 }
 

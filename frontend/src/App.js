@@ -57,12 +57,12 @@ function App() {
             })
     }, [])
 
-         // Fetch CurrentUserData Based On Login Info
-         useEffect(()=> {
-            fetch(`http://localhost:9292/users/${userId}`)
-            .then((r) => r.json())
-            .then((data)=> setCurrentUser(data));
-        }, [userId])
+    // Fetch CurrentUserData Based On Login Info
+    useEffect(()=> {
+        fetch(`http://localhost:9292/users/${userId}`)
+        .then((r) => r.json())
+        .then((data)=> setCurrentUser(data));
+    }, [userId])
 
     function login(details)
     {
@@ -74,7 +74,7 @@ function App() {
                 setLoggedIn(true)
                 return (
 
-                    //Ron Added setUserId
+                    //setUserId State Is Used to Target & Fetch Current Logged-In User Data
                     setUserId(user.id),
                     //
 
@@ -101,6 +101,7 @@ function App() {
             <>
             <Header
                 setLoggedIn = {setLoggedIn}
+                currentUser = {currentUser}
             />
 
             <Switch>
