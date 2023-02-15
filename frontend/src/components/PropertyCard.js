@@ -7,9 +7,7 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
     
 
     const handlePropertyClick = (e) => {
-        console.log(currentProperty)
         setCurrentProperty({...property, [e.target.name]: e.target.value})
-        console.log(currentProperty)
     }
 
     return (

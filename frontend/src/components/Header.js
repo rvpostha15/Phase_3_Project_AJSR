@@ -2,15 +2,15 @@ import React from 'react';
 import { Link, NavLink } from 'react-router-dom' 
 
 
-function Header ({ }) {
+function Header ({ setLoggedIn }) {
 
-    const handleLogin = () => {
-        alert("You've gotta program me!")
+    const handleLogout = () => {
+        setLoggedIn(false)
     }
 
     return (
         <div>
-            <button onClick={handleLogin}>Login / Logout</button>
+            <button onClick={handleLogout}>Logout</button>
             <Link to = "/" className="title">StayOver</Link>
             <div className="flex_container">  
                 <NavLink to = "/properties" className="navbar" >Properties</NavLink>
