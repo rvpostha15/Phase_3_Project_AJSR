@@ -8,6 +8,7 @@ import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
 import Login from "./Login";
 import MyAccount from "./components/MyAccount"
+import FavoritePage from "./components/FavoritePage"
 
 
 function App()
@@ -21,6 +22,7 @@ function App()
     const [userId, setUserId] = useState(null)
     const [currentUser, setCurrentUser] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
+    const [favorites, setFavorites] = useState([])
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -45,6 +47,20 @@ function App()
             })
     }, [])
 
+    // useEffect(function ()
+    // {
+    //     fetch("http://localhost:9292/properties/favorites")
+    //         .then(function (resp)
+    //         {
+    //             return resp.json()
+    //         })
+    //         .then(function (data)
+    //         {
+    //             console.log(data)
+    //             return setFavorites(data)
+    //         })
+    // }, [])
+
     //Initial Fetch All User Data
     useEffect(function ()
     {
@@ -68,7 +84,15 @@ function App()
             .then((data) => setCurrentUser(data));
     }, [userId])
 
-    const changeSearch = (value) => {
+    useEffect(() =>
+    {
+        fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
+            .then((r) => r.json())
+            .then((data) => setFavorites(data));
+    }, [userId])
+
+    const changeSearch = (value) =>
+    {
         setSearchTerm(value)
     }
 
@@ -102,35 +126,42 @@ function App()
         <div className='App'>
             {(loggedIn === true) ? (
 
-            <>
-            <Header
-                setLoggedIn = {setLoggedIn}
-                currentUser = {currentUser}
-            />
-
-            <Switch>
-
-                <Route path='/properties/:id'>
-                    <CurrentProperty 
-                        currentProperty={currentProperty}
+                <>
+                    <Header
+                        setLoggedIn={setLoggedIn}
+                        currentUser={currentUser}
                     />
-                </Route>
 
-                <Route path='/properties'>
-                    <PropertyContainer 
-                        properties={filteredProperties}
-                        setCurrentProperty={setCurrentProperty}
-                        currentProperty={currentProperty} 
-                        searchTerm={searchTerm}
-                        changeSearch={changeSearch}
-                    />
-                </Route>
+                    <Switch>
 
-                <Route path='/:user'>
-                    <MyAccount 
-                         currentUser={currentUser}
-                    />
-                 </Route>
+                        <Route path='/properties/:id'>
+                            <CurrentProperty
+                                currentProperty={currentProperty}
+                            />
+                        </Route>
+
+                        <Route path='/properties'>
+                            <PropertyContainer
+                                properties={filteredProperties}
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                                searchTerm={searchTerm}
+                                changeSearch={changeSearch}
+                            />
+                        </Route>
+
+                        <Route path='/favorites'>
+                            <FavoritePage
+                                userId={userId}
+                                favorites={favorites}
+                            />
+                        </Route>
+
+                        <Route path='/:user'>
+                            <MyAccount
+                                currentUser={currentUser}
+                            />
+                        </Route>
 
                     </Switch>
                 </>

@@ -29,5 +29,9 @@ end
     Review.create(text: Faker::Lorem.paragraph, user_id: User.all.sample.id, property_id: Property.all.sample.id);
 end
 
+20.times do 
+    Favorite.create(property_id: Property.all.sample.id, user_id: User.all.sample.id)
+end
+
 
 puts "✅ Done seeding!"
