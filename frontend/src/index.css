@@ -12,6 +12,13 @@ code {
     monospace;
 }
 
+.btn {
+  cursor: pointer;
+}
+.btn2 {
+  cursor: grab;
+}
+
 .title {
   font-size: 70px;
   font-weight: bold;
