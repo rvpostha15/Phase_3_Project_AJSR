@@ -1,14 +1,14 @@
 function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
 {
 
-    const { title, available, user_id, id } = currentProperty
+    const { available, id } = currentProperty
     console.log("current", currentProperty)
 
 
 
     const handleBook = () => {
-        
-            alert(`Congratulations ${currentUser.first_name}! You're stay has been bookd!`)
+            // Initiates PATCH Request to Update available and user_id for currentUser
+            alert(`CoNgRaTuLaTiOnS ${currentUser.first_name}! Your stay has been booked!`)
             fetch(`http://localhost:9292/properties/${id}`, {
                 method: "PATCH",
                 headers: { "Content-Type": "application/json"},
@@ -18,6 +18,7 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
                 }),
             })
             .then(r=> r.json())
+            // This 2nd Fetch => Requests the Updated currentUser from the Server, so that DOM === Server
             .then(() =>{
                 fetch(`http://localhost:9292/properties/${id}`)
                 .then(r=>r.json())
@@ -26,13 +27,15 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
     })
     }
 
+    // Return A div for Each Review
     const mappedReviews = currentProperty.reviews.map(function (review)
     {
-        return <div>
-            <p>{`User: ${review.user.username}`}</p>
-            <p>{`Review: ${review.text}`}</p>
-        </div>
-    })
+        return (
+            <div>
+                <p>{`User: ${review.user.username}`}</p>
+                <p>{`Review: ${review.text}`}</p>
+            </div>
+    )})
     
     return (
         <div className="">
@@ -42,10 +45,10 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
             <p>State: {currentProperty.state}</p>
             <p>Price per night: {currentProperty.price_per_night}</p>
             <div>
+                {/* Replaces Button Element */}
                 {(available === false)? (<h3>Seat's taken</h3>) : 
                 <button 
                     className="btn"
-                    
                     onClick={ handleBook }
                 >Book</button>}
                 <button className="btn2">❤️</button>
