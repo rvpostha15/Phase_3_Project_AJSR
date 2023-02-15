@@ -73,7 +73,7 @@ function App() {
                 
                 setLoggedIn(true)
                 return (
-                    
+
                     //Ron Added setUserId
                     setUserId(user.id),
                     //
@@ -128,6 +128,7 @@ function App() {
             </Switch>
             </>
             ) : (
+                // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />
             )
             }
