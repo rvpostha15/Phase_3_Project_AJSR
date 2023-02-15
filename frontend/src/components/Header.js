@@ -16,7 +16,7 @@ function Header ({ setLoggedIn, currentUser }) {
                 <NavLink to = "/properties" className="navbar" >Properties</NavLink>
                 <NavLink to = {`/${currentUser.username}`} className="navbar" >My Account</NavLink>
                 {/* might be a problem with the favorites loading all properties b4 it can get to favorites */}
-                <NavLink to = "/properties/favorites" className="navbar">Favorites</NavLink>
+                <NavLink to = "/properties" className="navbar">Favorites</NavLink>
             </div>
         </div>
     )
