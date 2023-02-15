@@ -6,7 +6,7 @@ import {Switch, Route} from 'react-router-dom';
 import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
-import Login from "./components/Login";
+import Login from "./Login";
 import MyAccount from "./components/MyAccount"
 
 
