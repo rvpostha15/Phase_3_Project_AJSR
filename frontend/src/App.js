@@ -6,7 +6,7 @@ import {Switch, Route} from 'react-router-dom';
 import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
-import Login from "./Login";
+import Login from "./components/Login";
 import MyAccount from "./components/MyAccount"
 
 
@@ -19,6 +19,7 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(false)
     const [userId, setUserId] = useState(null)
     const [currentUser, setCurrentUser] = useState('')
+    const [searchTerm, setSearchTerm] = useState('')
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -64,6 +65,15 @@ function App() {
         .then((data)=> setCurrentUser(data));
     }, [userId])
 
+    const changeSearch = (value) => {
+        setSearchTerm(value)
+    }
+
+    //Display Properties via Search: Title or State
+    const filteredProperties = properties.filter(p => (
+        p.title.toLowerCase().includes(searchTerm.toLowerCase()) || p.state.toLowerCase().includes(searchTerm.toLowerCase())
+    ))
+
     function login(details)
     {
         const mappedUsers = userData.map(function (user)
@@ -88,12 +98,6 @@ function App() {
         })
     }
     
-    function logout()
-    {
-        console.log("Logout")
-    }
-
-
 
     return (
         <div className='App'>
@@ -114,9 +118,11 @@ function App() {
 
                 <Route path='/properties'>
                     <PropertyContainer 
-                        properties={properties}
+                        properties={filteredProperties}
                         setCurrentProperty={setCurrentProperty}
                         currentProperty={currentProperty} 
+                        searchTerm={searchTerm}
+                        changeSearch={changeSearch}
                     />
                 </Route>
 
