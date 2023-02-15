@@ -1,6 +1,6 @@
 //React Technologies
 import React, { useState, useEffect } from 'react';
-import {Switch, Route} from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 //Components
 import PropertyContainer from './components/PropertyContainer';
@@ -10,7 +10,8 @@ import Login from "./Login";
 import MyAccount from "./components/MyAccount"
 
 
-function App() {
+function App()
+{
 
     //States  
     const [properties, setProperties] = useState([])
@@ -26,7 +27,7 @@ function App() {
     const [error, setError] = useState("")
 
 
-   
+
 
     // Initial Fetch All Properties
     useEffect(function ()
@@ -38,6 +39,7 @@ function App() {
             })
             .then(function (data)
             {
+                console.log(data)
                 return setProperties(data)
             })
     }, [])
@@ -58,10 +60,11 @@ function App() {
     }, [])
 
     // Fetch CurrentUserData Based On Login Info
-    useEffect(()=> {
+    useEffect(() =>
+    {
         fetch(`http://localhost:9292/users/${userId}`)
-        .then((r) => r.json())
-        .then((data)=> setCurrentUser(data));
+            .then((r) => r.json())
+            .then((data) => setCurrentUser(data));
     }, [userId])
 
     function login(details)
@@ -70,64 +73,54 @@ function App() {
         {
             if (user.email == details.email && user.password == details.password) {
                 console.log("logged in")
-                
                 setLoggedIn(true)
                 return (
-
                     //setUserId State Is Used to Target & Fetch Current Logged-In User Data
                     setUserId(user.id),
                     //
-
                     setUser({
                         name: details.name,
                         email: details.email
-                }))
+                    }))
             } else {
                 console.log("details do not match")
             }
         })
     }
-    
-    function logout()
-    {
-        console.log("Logout")
-    }
-
-
 
     return (
         <div className='App'>
             {(loggedIn === true) ? (
-            <>
-            <Header
-                setLoggedIn = {setLoggedIn}
-                currentUser = {currentUser}
-            />
-
-            <Switch>
-
-                <Route path='/properties/:id'>
-                    <CurrentProperty 
-                        currentProperty={currentProperty}
-                    />
-                </Route>
-
-                <Route path='/properties'>
-                    <PropertyContainer 
-                        properties={properties}
-                        setCurrentProperty={setCurrentProperty}
-                        currentProperty={currentProperty} 
-                    />
-                </Route>
-
-                <Route path='/:user'>
-                    <MyAccount 
+                <>
+                    <Header
+                        setLoggedIn={setLoggedIn}
                         currentUser={currentUser}
                     />
-                </Route>
 
-            </Switch>
-            </>
+                    <Switch>
+
+                        <Route path='/properties/:id'>
+                            <CurrentProperty
+                                currentProperty={currentProperty}
+                            />
+                        </Route>
+
+                        <Route path='/properties'>
+                            <PropertyContainer
+                                properties={properties}
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                            />
+                        </Route>
+
+                        <Route path='/:user'>
+                            <MyAccount
+                                currentUser={currentUser}
+                            />
+                        </Route>
+
+                    </Switch>
+                </>
             ) : (
                 // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />
