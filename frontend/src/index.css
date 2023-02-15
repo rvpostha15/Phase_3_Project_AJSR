@@ -55,6 +55,8 @@ code {
   padding: 5px;
   margin: 1%;
   background: red;
+  text-decoration:none;
+  color:#000;
 }
 
 .property_title {

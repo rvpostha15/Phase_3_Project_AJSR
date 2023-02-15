@@ -1,23 +1,29 @@
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom' 
 
-function PropertyCard({ property })
+function PropertyCard({ property, currentProperty, setCurrentProperty })
 {
-    const { street_address, city, state, price_per_night, title } = property
-
-    console.log(property)
+    const { street_address, city, state, price_per_night, title, id } = property
 
     const handlePropertyClick = () => {
-        alert(title)
+        fetch(`http://localhost:9292/properties/${id}`)
+        .then(resp => resp.json())
+        .then(data => setCurrentProperty(data))
     }
 
     return (
-        <div onClick={handlePropertyClick} className="property_card">
+        <Link
+            to = "/properties/:id" 
+            onClick={handlePropertyClick} 
+            className="property_card"
+        >
             <h3 className="property_title">{title}</h3>
             <p>Street Address: {street_address}</p>
             <p>City: {city}</p>
             <p>State: {state}</p>
             <p>Price per night: {price_per_night}</p>
             <button>❤️</button>
-        </div>
+        </Link>
     )
 }
 
