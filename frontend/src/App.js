@@ -5,11 +5,21 @@ import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header'
 import CurrentProperty from './components/CurrentProperty'
 
-function App()
-{
+function App() {
+
+    let initialProperty = {
+        street_address: '',
+        city: '',
+        state: '',
+        price_per_night: '',
+        title: '',
+    }
+
     //States  
     const [properties, setProperties] = useState([])
-    const [currentProperty, setCurrentProperty] = useState()
+    const [currentProperty, setCurrentProperty] = useState(initialProperty)
+
+   
 
     // Initial Fetch All Properties
     useEffect(function ()
@@ -25,7 +35,7 @@ function App()
             })
     }, [])
     
-    console.log(currentProperty)
+    // console.log(currentProperty)
     return (
         <div>
             <Header/>

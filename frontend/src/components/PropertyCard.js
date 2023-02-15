@@ -4,11 +4,12 @@ import { Link, NavLink } from 'react-router-dom'
 function PropertyCard({ property, currentProperty, setCurrentProperty })
 {
     const { street_address, city, state, price_per_night, title, id } = property
+    
 
-    const handlePropertyClick = () => {
-        fetch(`http://localhost:9292/properties/${id}`)
-        .then(resp => resp.json())
-        .then(data => setCurrentProperty(data))
+    const handlePropertyClick = (e) => {
+        console.log(currentProperty)
+        setCurrentProperty({...property, [e.target.name]: e.target.value})
+        console.log(currentProperty)
     }
 
     return (
@@ -17,7 +18,7 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
             onClick={handlePropertyClick} 
             className="property_card"
         >
-            <h3 className="property_title">{title}</h3>
+            <h3>{title}</h3>
             <p>Street Address: {street_address}</p>
             <p>City: {city}</p>
             <p>State: {state}</p>
