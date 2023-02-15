@@ -1,12 +1,34 @@
-import PropertyContainer from './PropertyContainer'
-import React, { useState, useEffect } from 'react'
+
 import Login from "./Login"
 
-function App()
-{
+import React, { useState, useEffect } from 'react';
+import {Switch, Route} from 'react-router-dom';
+
+import PropertyContainer from './components/PropertyContainer';
+import Header from './components/Header'
+import CurrentProperty from './components/CurrentProperty'
+
+function App() {
+
+    let initialProperty = {
+        street_address: '',
+        city: '',
+        state: '',
+        price_per_night: '',
+        title: '',
+    }
+
+    //States  
     const [properties, setProperties] = useState([])
+
     const [userData, setUserData] = useState([])
 
+    const [currentProperty, setCurrentProperty] = useState(initialProperty)
+
+
+   
+
+    // Initial Fetch All Properties
     useEffect(function ()
     {
         fetch("http://localhost:9292/properties")
@@ -16,10 +38,10 @@ function App()
             })
             .then(function (data)
             {
-                console.log(data)
                 return setProperties(data)
             })
     }, [])
+
 
     useEffect(function ()
     {
@@ -85,14 +107,32 @@ function App()
 
     const [loggedIn, setLoggedIn] = useState(false)
 
+
+    
+    // console.log(currentProperty)
     return (
-        <div className='App'>
-            {(loggedIn === true) ? (
-                <PropertyContainer properties={properties} />
-            ) : (
-                <Login login={login} error={error} />
-            )
-            }
+        <div>
+            <Header/>
+
+            <Switch>
+
+                <Route path='/properties/:id'>
+                    <CurrentProperty 
+                        currentProperty={currentProperty}
+                    />
+                </Route>
+
+                <Route path='/properties'>
+                    <PropertyContainer 
+                        properties={properties}
+                        setCurrentProperty={setCurrentProperty}
+                        currentProperty={currentProperty} 
+                    />
+                </Route>
+
+            </Switch>
+
+
         </div>
     )
 }

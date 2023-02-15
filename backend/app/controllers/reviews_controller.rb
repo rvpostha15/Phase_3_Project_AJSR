@@ -1,5 +1,10 @@
 class ReviewsController < ApplicationController
     
+    get '/reviews/:id' do
+        reviews = Review.find(params[:id])
+        reviews.to_json
+    end
+
     post '/reviews' do 
         review = Review.create(params)
         review.to_json
