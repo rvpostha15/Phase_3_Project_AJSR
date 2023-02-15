@@ -2,7 +2,7 @@ class PropertiesController < ApplicationController
 
     get '/properties' do
         properties = Property.all
-        properties.to_json
+        properties.to_json(include: {reviews: {include: :user}})
     end
 
     get '/properties/:id' do 

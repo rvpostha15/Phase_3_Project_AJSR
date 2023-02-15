@@ -12,7 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2023_02_14_121835) do
 
-
   create_table "landlords", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -40,7 +39,7 @@ ActiveRecord::Schema.define(version: 2023_02_14_121835) do
     t.string "password"
     t.string "first_name"
     t.string "last_name"
-    t.string "email_address"
+    t.string "email"
     t.integer "phone_number"
   end
 

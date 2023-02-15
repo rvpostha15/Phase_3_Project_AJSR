@@ -1,11 +1,34 @@
+//React Technologies
+import React, { useState, useEffect } from 'react';
+import {Switch, Route} from 'react-router-dom';
 
-import PropertyContainer from './PropertyContainer'
-import React, { useState, useEffect } from 'react'
+//Components
+import PropertyContainer from './components/PropertyContainer';
+import Header from './components/Header';
+import CurrentProperty from './components/CurrentProperty';
+import Login from "./Login";
+import MyAccount from "./components/MyAccount"
 
-function App()
-{
+
+function App() {
+
+    //States  
     const [properties, setProperties] = useState([])
+    const [userData, setUserData] = useState([])
+    const [currentProperty, setCurrentProperty] = useState()
+    const [loggedIn, setLoggedIn] = useState(false)
+    const [userId, setUserId] = useState(null)
+    const [currentUser, setCurrentUser] = useState('')
 
+    // WORK THIS OUT JERROD
+    const [user, setUser] = useState({ name: "", email: "" })
+    // FOR JERROD
+    const [error, setError] = useState("")
+
+
+   
+
+    // Initial Fetch All Properties
     useEffect(function ()
     {
         fetch("http://localhost:9292/properties")
@@ -15,14 +38,101 @@ function App()
             })
             .then(function (data)
             {
-                console.log(data)
                 return setProperties(data)
             })
     }, [])
 
+    //Initial Fetch All User Data
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/users")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                return setUserData(data)
+            })
+    }, [])
+
+    // Fetch CurrentUserData Based On Login Info
+    useEffect(()=> {
+        fetch(`http://localhost:9292/users/${userId}`)
+        .then((r) => r.json())
+        .then((data)=> setCurrentUser(data));
+    }, [userId])
+
+    function login(details)
+    {
+        const mappedUsers = userData.map(function (user)
+        {
+            if (user.email == details.email && user.password == details.password) {
+                console.log("logged in")
+                
+                setLoggedIn(true)
+                return (
+
+                    //setUserId State Is Used to Target & Fetch Current Logged-In User Data
+                    setUserId(user.id),
+                    //
+
+                    setUser({
+                        name: details.name,
+                        email: details.email
+                }))
+            } else {
+                console.log("details do not match")
+            }
+        })
+    }
+    
+    function logout()
+    {
+        console.log("Logout")
+    }
+
+
+
     return (
-        <div>
-            <PropertyContainer properties={properties} />
+        <div className='App'>
+            {(loggedIn === true) ? (
+            <>
+            <Header
+                setLoggedIn = {setLoggedIn}
+                currentUser = {currentUser}
+            />
+
+            <Switch>
+
+                <Route path='/properties/:id'>
+                    <CurrentProperty 
+                        currentProperty={currentProperty}
+                    />
+                </Route>
+
+                <Route path='/properties'>
+                    <PropertyContainer 
+                        properties={properties}
+                        setCurrentProperty={setCurrentProperty}
+                        currentProperty={currentProperty} 
+                    />
+                </Route>
+
+                <Route path='/:user'>
+                    <MyAccount 
+                        currentUser={currentUser}
+                    />
+                </Route>
+
+            </Switch>
+            </>
+            ) : (
+                // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
+                <Login login={login} error={error} />
+            )
+            }
         </div>
     )
 }
