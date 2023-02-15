@@ -111,7 +111,9 @@ function App() {
     
     // console.log(currentProperty)
     return (
-        <div>
+        <div className='App'>
+            {(loggedIn === true) ? (
+            <>
             <Header/>
 
             <Switch>
@@ -131,8 +133,11 @@ function App() {
                 </Route>
 
             </Switch>
-
-
+            </>
+            ) : (
+                <Login login={login} error={error} />
+            )
+            }
         </div>
     )
 }
