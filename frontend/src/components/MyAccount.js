@@ -6,7 +6,7 @@ console.log(currentUser)
 const { email, first_name, last_name, phone_number, password, username, id } = currentUser
 
     return (
-        <div>
+        <div className="personal-account">
         <p>Email Address: {email}</p>
         <p>First Name: {first_name}</p>
         <p>Last Name: {last_name}</p>

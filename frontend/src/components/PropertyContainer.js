@@ -15,7 +15,7 @@ function PropertyContainer({ properties, currentProperty, setCurrentProperty })
 
     })
     return (
-        <div>
+        <div className="property-box-container">
             {mappedProperties}
         </div>
     )
