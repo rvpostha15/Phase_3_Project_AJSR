@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 
@@ -17,13 +18,17 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
                 }),
             })
             .then(r=> r.json())
+
             // This 2nd Fetch => Requests the Updated currentUser from the Server, so that DOM === Server
-            .then(() =>{
+            .then(() =>
+            {
                 fetch(`http://localhost:9292/properties/${id}`)
-                .then(r => r.json())
-                .then(data => (console.log('fetch', data), 
-                setCurrentProperty(data)))
-    })
+
+                    .then(r => r.json())
+                    .then(data => (console.log('fetch', data),
+                        setCurrentProperty(data)))
+            })
+
     }
 
     // Return A div for Each Review
@@ -34,8 +39,9 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
                 <p>{`User: ${review.user.username}`}</p>
                 <p>{`Review: ${review.text}`}</p>
             </div>
-    )})
-    
+        )
+    })
+
     return (
         <div className="">
             <h3 className="property_title">{currentProperty.title}</h3>
@@ -45,11 +51,11 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
             <p>Price per night: {currentProperty.price_per_night}</p>
             <div>
                 {/* Replaces Button Element */}
-                {(available === false)? (<h3>Seat's taken</h3>) : 
-                <button 
-                    className="btn"
-                    onClick={ handleBook }
-                >Book</button>}
+                {(available === false) ? (<h3>Seat's taken</h3>) :
+                    <button
+                        className="btn"
+                        onClick={handleBook}
+                    >Book</button>}
                 <button className="btn2">❤️</button>
             </div>
             <h2>Reviews:</h2>

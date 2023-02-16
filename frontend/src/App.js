@@ -45,10 +45,24 @@ function App()
             })
             .then(function (data)
             {
-                // console.log(data)
+                console.log(data)
                 return setProperties(data)
             })
     }, [currentProperty])
+
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/properties/top_three")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                // return setProperties(data)
+            })
+    }, [])
 
     // useEffect(function ()
     // {
@@ -126,22 +140,20 @@ function App()
     }
 
 
-    
-    
-    
 
     return (
         <div className='App'>
             {(loggedIn === true) ? (
 
 
-            <>
-            <Header
-                setLoggedIn = {setLoggedIn}
-                currentUser = {currentUser}
-            />
+                <>
+                    <Header
+                        setLoggedIn={setLoggedIn}
+                        currentUser={currentUser}
+                    />
 
-            <Switch>
+                    <Switch>
+
 
                 <Route exact path='/'>
                     <HomePage/>
@@ -163,22 +175,25 @@ function App()
                             />
                 </Route>
 
-                <Route path='/properties'>
-                    <PropertyContainer
-                        properties={filteredProperties}
-                        setCurrentProperty={setCurrentProperty}
-                        currentProperty={currentProperty}
-                        searchTerm={searchTerm}
-                        changeSearch={changeSearch}
-                    />
-                </Route>
 
-                <Route path='/favorites'>
-                    <FavoritePage
-                        userId={userId}
-                        favorites={favorites}
-                    />
-                </Route>
+                 <Route path='/properties'>
+                            <PropertyContainer
+                                properties={filteredProperties}
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                                searchTerm={searchTerm}
+                                changeSearch={changeSearch}
+                                userId={userId}
+                                setFavorites={setFavorites}
+                            />
+                        </Route>
+
+                        <Route path='/favorites'>
+                            <FavoritePage
+                                userId={userId}
+                                favorites={favorites}
+                            />
+                        </Route>
 
                 <Route path='/:user'>
                     <MyAccount
@@ -186,8 +201,8 @@ function App()
                     />
                 </Route>
 
-            </Switch>
-            </>
+                    </Switch>
+                </>
             ) : (
                 // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />

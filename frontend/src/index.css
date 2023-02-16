@@ -1,6 +1,65 @@
+
  body {
   background-color: white;
 }
+
+/* #slide {
+  width: 100%;
+  height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: repeat;
+  backface-visibility: hidden;
+  animation: slide normal 90s;
+  animation-timing-function: ease-in-out;
+  background-image: url('./img/img1.jpg');
+}
+
+@keyframes slide {
+  0% {
+    background-image: url('./img/img1.jpg');
+  }
+
+  10% {
+    background-image: url('./img/img2.jpg');
+  }
+
+  20% {
+    background-image: url('./img/img3.jpg');
+  }
+
+  30% {
+    background-image: url('./img/img4.jpg');
+  }
+
+  40% {
+    background-image: url('./img/img5.jpg');
+  }
+
+  50% {
+    background-image: url('./img/img6.jpg');
+  }
+
+  60% {
+    background-image: url('./img/img7.jpg');
+  }
+
+  70% {
+    background-image: url('./img/img8.jpg');
+  }
+
+  80% {
+    background-image: url('./img/img9.jpg');
+  }
+
+  90% {
+    background-image: url('./img/img10.jpg');
+  }
+
+  100% {
+    background-image: url('./img/img10.jpg')
+  }
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -10,6 +69,7 @@ code {
 .btn {
   cursor: pointer;
 }
+
 .btn2 {
   cursor: grab;
 }
@@ -113,6 +173,7 @@ code {
 
 .like-button {
   cursor: pointer;
+
   background-color: white;
   border: 1px solid black;
   border-radius: 50%;
@@ -149,6 +210,7 @@ code {
 
 .book-button:hover{
   background-color: #678D58;
+
 }
 
 .my-btns{
@@ -176,6 +238,4 @@ code {
   position: relative;
   background-color: white;
 }
-
-
 
