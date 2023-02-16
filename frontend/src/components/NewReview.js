@@ -1,23 +1,16 @@
-function NewReview({}) {
 
-    const initialFormData = {
-      title: '',
-      question: '',
-      answer: '',
-      image: '',
-      favorite: false
-    }
-  
-    const [formData, setFormData]=useState(initialFormData)
+function NewReview({ formData, setFormData, currentProperty, initialFormData }) {
+
+    
   
     const handleChange = (e) => {
       setFormData({ ...formData, [e.target.name]: e.target.value });
     }
   
-    // Add New Card to the Server + Reset formData After Successful Submission
-    // const handleSubmit = (e) => {
-    //   e.preventDefault()
-    //   fetch("http://localhost:8001/card", {
+    // Add New Review to the Server + Reset formData After Successful Submission
+    const handleSubmit = (e) => {
+      e.preventDefault()
+    //   fetch(`http://localhost:3000/properties/${currentProperty.id}`, {
     //     method: "POST",
     //     headers: {
     //       "Content-Type": "application/json",
@@ -26,47 +19,25 @@ function NewReview({}) {
     //   })
     //   .then(response => response.json())
     //   .then(() => {
-    //     addCards(formData)
     //     setFormData(initialFormData)
   
     //     //fetch the updated card list from server and update the state of cardList
-    //     fetch("http://localhost:8001/card")
-    //     .then(response => response.json())
-    //     .then(data => setCardList(data))
+    //     // fetch("http://localhost:8001/card")
+    //     // .then(response => response.json())
+    //     // .then(data => setCardList(data))
     //   })
     //   .catch(error => (alert(error)))
-    // }
+    }
         
     return (
       <div className="form-style-6">
-      <h1>Create a Flashcard</h1> 
+      <h1>{`Leave a Review for ${currentProperty.street_address}`}</h1> 
         <form onSubmit={handleSubmit}>
           <input 
             type='text' 
-            name="title" 
-            placeholder="Title" 
-            value={formData.title} 
-            onChange={handleChange}
-          />
-          <input 
-            type='text' 
-            name="question" 
-            placeholder="Question" 
-            value={formData.question}
-            onChange={handleChange}
-          />
-          <input 
-            type='text' 
-            name="answer" 
-            placeholder="Answer" 
-            value={formData.answer}
-            onChange={handleChange}
-          />
-          <input 
-            type='text' 
-            name="image" 
-            placeholder="Image url" 
-            value={formData.image}
+            name="text" 
+            placeholder="Leave Your Review" 
+            value={formData.text} 
             onChange={handleChange}
           />
           <input type='submit' value="Create"/>
@@ -76,4 +47,4 @@ function NewReview({}) {
   }
   
   
-  export default FlashCardForm
+  export default NewReview

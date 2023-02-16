@@ -1,3 +1,6 @@
+import React from 'react';
+import { Link, NavLink } from 'react-router-dom'
+
 function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
 {
 
@@ -54,10 +57,11 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
                 <button className="btn2">❤️</button>
             </div>
             <h2>Reviews:</h2>
-            <button>Leave a Review</button>
+            <NavLink to='/properties/new_review'>Leave a Review</NavLink>
             {mappedReviews}
         </div>
     )
 }
+// '/properties/:id/review'
 
 export default CurrentProperty

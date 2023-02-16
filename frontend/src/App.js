@@ -7,8 +7,9 @@ import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
 import Login from "./Login";
-import MyAccount from "./components/MyAccount"
-import FavoritePage from "./components/FavoritePage"
+import MyAccount from "./components/MyAccount";
+import FavoritePage from "./components/FavoritePage";
+import NewReview from './components/NewReview';
 
 
 function App()
@@ -122,6 +123,10 @@ function App()
         })
     }
 
+    const initialFormData = { text: '' }
+    
+    const [formData, setFormData]=useState(initialFormData)
+
     return (
         <div className='App'>
             {(loggedIn === true) ? (
@@ -135,36 +140,47 @@ function App()
 
             <Switch>
 
+                <Route path='/properties/new_review'>
+                    <NewReview
+                        formData={formData}
+                        setFormData={setFormData}
+                        currentProperty={currentProperty}
+                        initialFormData={initialFormData}
+                    />
+                </Route>
+
                 <Route path='/properties/:id'>
                     <CurrentProperty
                         setCurrentProperty={setCurrentProperty} 
                         currentProperty={currentProperty}
                         currentUser = {currentUser}
                             />
-                        </Route>
+                </Route>
 
-                        <Route path='/properties'>
-                            <PropertyContainer
-                                properties={filteredProperties}
-                                setCurrentProperty={setCurrentProperty}
-                                currentProperty={currentProperty}
-                                searchTerm={searchTerm}
-                                changeSearch={changeSearch}
-                            />
-                        </Route>
+                
 
-                        <Route path='/favorites'>
-                            <FavoritePage
-                                userId={userId}
-                                favorites={favorites}
-                            />
-                        </Route>
+                <Route path='/properties'>
+                    <PropertyContainer
+                        properties={filteredProperties}
+                        setCurrentProperty={setCurrentProperty}
+                        currentProperty={currentProperty}
+                        searchTerm={searchTerm}
+                        changeSearch={changeSearch}
+                    />
+                </Route>
 
-                        <Route path='/:user'>
-                            <MyAccount
-                                currentUser={currentUser}
-                            />
-                        </Route>
+                <Route path='/favorites'>
+                    <FavoritePage
+                        userId={userId}
+                        favorites={favorites}
+                    />
+                </Route>
+
+                <Route path='/:user'>
+                    <MyAccount
+                        currentUser={currentUser}
+                    />
+                </Route>
 
             </Switch>
             </>
