@@ -13,24 +13,11 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
     }
 
     return (
-        // <Link
-        //     to={`/properties/${id}`}
-        //     onClick={handlePropertyClick}
-        //     className="property_card"
-        // >
-        //     <h3>{title}</h3>
-        //     <p>Street Address: {street_address}</p>
-        //     <p>City: {city}</p>
-        //     <p>State: {state}</p>
-        //     <p>Price per night: {price_per_night}</p>
-        //     <button>❤️</button>
-            
-        // </Link>
+
         <Link className="individual-property-box"
         to ={`/properties/${title}`} 
         onClick={handlePropertyClick} 
         >
-    
         <h3 className="name-title">{title}</h3>
         <p className="address">Street Address: {street_address}</p>
         <p className="address">City: {city}</p>

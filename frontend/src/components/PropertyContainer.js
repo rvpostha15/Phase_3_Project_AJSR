@@ -16,6 +16,7 @@ function PropertyContainer({ properties, currentProperty, setCurrentProperty, se
 
     })
     return (
+
         <div>
             <Search
                 searchTerm={searchTerm}

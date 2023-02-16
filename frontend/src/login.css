@@ -24,6 +24,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
+    margin:auto
 }
 
 .alt-login {
@@ -31,6 +32,7 @@
     height: 3em;
     display: flex;
     justify-content: space-around;
+   
 }
 
 .alt-login div {
@@ -42,15 +44,16 @@
     background-size: contain;
     background-repeat: no-repeat;
     cursor: pointer;
+   
 }
 
-.google {
+/* .google {
     background-color: aquamarine;
     color: white;
     text-align: center;
     align-items: center;
     justify-content: center;
-}
+} */
 
 input {
     border: none;
@@ -60,22 +63,25 @@ input {
     text-align: center;
     padding: 2em;
     font-size: 0.75em;
+    margin: auto;
 }
 
 input:focus {
-    outline-color: rgb(32, 177, 255);
+    outline-color: rgb(32, 177, 255); 
+ 
 }
 
 .login-btn {
     width: 40%;
     height: 3em;
-    background-color: rgb(32, 177, 255);
+    background-color: #678D58;
     display: flex;
     justify-content: center;
     align-items: center;
     transition: 0.5s;
     border-radius: 0.25em;
     cursor: pointer;
+    
 }
 
 .login-btn:hover {
@@ -85,6 +91,7 @@ input:focus {
 .text {
     position: relative;
     bottom: 0.5%;
+    
 }
 
 .hide {
@@ -106,6 +113,7 @@ input:focus {
     bottom: 0;
     transform: scale(1);
     transition: 1.5s;
+   
 }
 
 /* .blue {
