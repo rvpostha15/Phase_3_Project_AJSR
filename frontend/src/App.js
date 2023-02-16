@@ -24,6 +24,7 @@ function App()
     const [currentUser, setCurrentUser] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
     const [favorites, setFavorites] = useState([])
+    
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -123,9 +124,10 @@ function App()
         })
     }
 
-    const initialFormData = { text: '' }
+
     
-    const [formData, setFormData]=useState(initialFormData)
+    
+    
 
     return (
         <div className='App'>
@@ -142,10 +144,9 @@ function App()
 
                 <Route path='/properties/new_review'>
                     <NewReview
-                        formData={formData}
-                        setFormData={setFormData}
                         currentProperty={currentProperty}
-                        initialFormData={initialFormData}
+                        setCurrentProperty={setCurrentProperty}
+                        currentUser={currentUser}
                     />
                 </Route>
 

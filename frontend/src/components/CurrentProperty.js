@@ -1,13 +1,9 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 
-function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
-{
+function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
 
     const { available, id } = currentProperty
-    console.log("current", currentProperty)
-
-
 
     const handleBook = () => {
             // Initiates PATCH Request to Update available and user_id for currentUser
@@ -24,7 +20,7 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
             // This 2nd Fetch => Requests the Updated currentUser from the Server, so that DOM === Server
             .then(() =>{
                 fetch(`http://localhost:9292/properties/${id}`)
-                .then(r=>r.json())
+                .then(r => r.json())
                 .then(data => (console.log('fetch', data), 
                 setCurrentProperty(data)))
     })
