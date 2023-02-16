@@ -1,11 +1,21 @@
+import MyReview from "./MyReview"
 
-function MyAccount ({ currentUser }) {
 
-console.log(currentUser)
+function MyAccount ({ currentUser, setProperties}) {
 
-const { email, first_name, last_name, phone_number, password, username, id } = currentUser
+console.log("me:", currentUser)
+
+const { email, first_name, last_name, phone_number, password, username, id, reviews } = currentUser
+
+const myReviews = reviews.map((review) =>
+    <MyReview
+        review={review}
+        setProperties={setProperties}
+    />
+)
 
     return (
+        <>
         <div className="personal-account">
         <p>Email Address: {email}</p>
         <p>First Name: {first_name}</p>
@@ -15,6 +25,11 @@ const { email, first_name, last_name, phone_number, password, username, id } = c
         <p>Username: {username}</p>
         <p>Account Number: {id}</p>
         </div>
+        <h2 className="review">My Reviews:</h2>
+        <div className="property-box-container">
+        {myReviews}
+        </div>
+        </>
     )
 }
 
