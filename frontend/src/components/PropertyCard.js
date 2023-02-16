@@ -12,9 +12,10 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
 
     return (
        
-        <Link className="individual-property-box">
+        <Link className="individual-property-box"
             to ={`/properties/${title}`} 
-            onClick={handlePropertyClick} 
+            onClick={handlePropertyClick}
+            >
             
         
             <h3 className="name-title">{title}</h3>
