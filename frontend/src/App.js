@@ -7,8 +7,10 @@ import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
 import Login from "./Login";
-import MyAccount from "./components/MyAccount"
-import FavoritePage from "./components/FavoritePage"
+import MyAccount from "./components/MyAccount";
+import FavoritePage from "./components/FavoritePage";
+import NewReview from './components/NewReview';
+import HomePage from './components/HomePage';
 
 
 function App()
@@ -23,6 +25,7 @@ function App()
     const [currentUser, setCurrentUser] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
     const [favorites, setFavorites] = useState([])
+    
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -42,10 +45,24 @@ function App()
             })
             .then(function (data)
             {
-                // console.log(data)
+                console.log(data)
                 return setProperties(data)
             })
     }, [currentProperty])
+
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/properties/top_three")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                // return setProperties(data)
+            })
+    }, [])
 
     // useEffect(function ()
     // {
@@ -122,18 +139,33 @@ function App()
         })
     }
 
+
+
     return (
         <div className='App'>
             {(loggedIn === true) ? (
 
 
-            <>
-            <Header
-                setLoggedIn = {setLoggedIn}
-                currentUser = {currentUser}
-            />
+                <>
+                    <Header
+                        setLoggedIn={setLoggedIn}
+                        currentUser={currentUser}
+                    />
 
-            <Switch>
+                    <Switch>
+
+
+                <Route exact path='/'>
+                    <HomePage/>
+                </Route>
+
+                <Route path='/properties/new_review'>
+                    <NewReview
+                        currentProperty={currentProperty}
+                        setCurrentProperty={setCurrentProperty}
+                        currentUser={currentUser}
+                    />
+                </Route>
 
                 <Route path='/properties/:id'>
                     <CurrentProperty
@@ -141,15 +173,18 @@ function App()
                         currentProperty={currentProperty}
                         currentUser = {currentUser}
                             />
-                        </Route>
+                </Route>
 
-                        <Route path='/properties'>
+
+                 <Route path='/properties'>
                             <PropertyContainer
                                 properties={filteredProperties}
                                 setCurrentProperty={setCurrentProperty}
                                 currentProperty={currentProperty}
                                 searchTerm={searchTerm}
                                 changeSearch={changeSearch}
+                                userId={userId}
+                                setFavorites={setFavorites}
                             />
                         </Route>
 
@@ -160,14 +195,14 @@ function App()
                             />
                         </Route>
 
-                        <Route path='/:user'>
-                            <MyAccount
-                                currentUser={currentUser}
-                            />
-                        </Route>
+                <Route path='/:user'>
+                    <MyAccount
+                        currentUser={currentUser}
+                    />
+                </Route>
 
-            </Switch>
-            </>
+                    </Switch>
+                </>
             ) : (
                 // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />

@@ -11,7 +11,7 @@ function Header({ setLoggedIn, currentUser })
     }
 
     return (
-        <div>
+        <div id='slide'>
             <button onClick={handleLogout}>Logout</button>
             <Link to="/" className="title">StayOver</Link>
             <div className="flex_container">

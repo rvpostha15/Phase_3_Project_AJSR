@@ -4,6 +4,11 @@ class PropertiesController < ApplicationController
         properties = Property.all
         properties.to_json(include: {reviews: {include: :user}})
     end
+    get '/properties/top_three' do
+        properties = Property.top_three_favorites_count
+        properties.to_json(include: {reviews: {include: :user}})
+    end
+
     get '/properties/favorites' do
         properties = Property.all
         properties.to_json(include: :favorites)
