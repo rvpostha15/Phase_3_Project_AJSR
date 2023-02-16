@@ -14,8 +14,8 @@ function HomePage({ hotProperties, setCurrentProperty, currentProperty, searchTe
         />
     })
     return (
-        <div>
-            <h1>🔥🔥🔥 Trending Properties 🔥🔥🔥</h1>
+        <div className="homepage">
+            <p id="featured">Trending Properties</p>
             <div className='property-box-container'>
                 {mappedProps}
             </div>

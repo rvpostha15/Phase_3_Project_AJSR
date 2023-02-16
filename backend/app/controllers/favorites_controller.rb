@@ -10,7 +10,7 @@ class FavoritesController < ApplicationController
     end
 
     delete '/favorites/:id' do 
-        favorite = Favorite.find(params[:id])
+        favorite = Favorite.find_id(params[:id])
         favorite.destroy
     end
 end

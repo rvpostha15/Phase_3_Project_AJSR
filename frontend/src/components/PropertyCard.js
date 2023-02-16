@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 
-function PropertyCard({ property, currentProperty, setCurrentProperty, userId, setFavorites })
+function PropertyCard({ property, currentProperty, setCurrentProperty, userId, setFavorites, setCurrentFavorite })
 {
 
     const { street_address, city, state, price_per_night, title, id, available } = property
-    
+
 
 
 
@@ -46,8 +46,8 @@ function PropertyCard({ property, currentProperty, setCurrentProperty, userId, s
     return (
 
         <Link className="individual-property-box"
-        to ={`/properties/${title}`} 
-        onClick={handlePropertyClick} 
+            to={`/properties/${title}`}
+            onClick={handlePropertyClick}
         >
 
             <h3 className="name-title">{title}</h3>
@@ -57,10 +57,10 @@ function PropertyCard({ property, currentProperty, setCurrentProperty, userId, s
             <p className="price">Price per night: {price_per_night}</p>
             <div className='my-btns'>
                 <button className="like-button" onClick={handleLikeClick}> ❤️</button>
-                <p className = "book-button"> {(available === false)? "Unavailable" : "Available" }</p>
+                <p className="book-button"> {(available === false) ? "Unavailable" : "Available"}</p>
             </div>
-    </Link>
-    
+        </Link>
+
 
     )
 }
