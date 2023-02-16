@@ -7,7 +7,7 @@ function favorite_page({ favorites, userID })
         return <PropertyCard property={favorite} />
     })
     return (
-        <div>
+        <div className="property-box-container">
             {mappedProperties}
         </div>
     )
