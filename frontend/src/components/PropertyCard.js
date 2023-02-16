@@ -4,7 +4,7 @@ import { Link, NavLink } from 'react-router-dom'
 function PropertyCard({ property, currentProperty, setCurrentProperty })
 {
     const { street_address, city, state, price_per_night, title, id } = property
-    console.log(property)
+    
 
 
     const handlePropertyClick = (e) =>
@@ -24,7 +24,7 @@ function PropertyCard({ property, currentProperty, setCurrentProperty })
             <p>State: {state}</p>
             <p>Price per night: {price_per_night}</p>
             <button>❤️</button>
-            <button>Book</button>
+            
         </Link>
     )
 }

@@ -42,7 +42,7 @@ function App()
             })
             .then(function (data)
             {
-                console.log(data)
+                // console.log(data)
                 return setProperties(data)
             })
     }, [])
@@ -71,7 +71,7 @@ function App()
             })
             .then(function (data)
             {
-                console.log(data)
+                // console.log(data)
                 return setUserData(data)
             })
     }, [])
@@ -126,17 +126,20 @@ function App()
         <div className='App'>
             {(loggedIn === true) ? (
 
-                <>
-                    <Header
-                        setLoggedIn={setLoggedIn}
-                        currentUser={currentUser}
-                    />
 
-                    <Switch>
+            <>
+            <Header
+                setLoggedIn = {setLoggedIn}
+                currentUser = {currentUser}
+            />
 
-                        <Route path='/properties/:id'>
-                            <CurrentProperty
-                                currentProperty={currentProperty}
+            <Switch>
+
+                <Route path='/properties/:id'>
+                    <CurrentProperty
+                        setCurrentProperty={setCurrentProperty} 
+                        currentProperty={currentProperty}
+                        currentUser = {currentUser}
                             />
                         </Route>
 
@@ -163,8 +166,8 @@ function App()
                             />
                         </Route>
 
-                    </Switch>
-                </>
+            </Switch>
+            </>
             ) : (
                 // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />

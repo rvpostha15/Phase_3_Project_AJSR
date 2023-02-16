@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2023_02_15_194616) do
 
   create_table "favorites", force: :cascade do |t|
@@ -28,7 +29,7 @@ ActiveRecord::Schema.define(version: 2023_02_15_194616) do
     t.string "city"
     t.string "state"
     t.integer "price_per_night"
-    t.boolean "available?"
+    t.boolean "available"
     t.integer "user_id"
     t.integer "landlord_id"
   end
