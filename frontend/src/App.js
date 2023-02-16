@@ -42,8 +42,22 @@ function App()
             })
             .then(function (data)
             {
-                // console.log(data)
+                console.log(data)
                 return setProperties(data)
+            })
+    }, [])
+
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/properties/top_three")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                // return setProperties(data)
             })
     }, [])
 
@@ -122,24 +136,34 @@ function App()
         })
     }
 
+    // function handleNewLike(newLike)
+    // {
+    //     useEffect(() =>
+    //     {
+    //         fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
+    //             .then((r) => r.json())
+    //             .then((data) => setFavorites(data));
+    //     }, [])
+    // }
+
     return (
         <div className='App'>
             {(loggedIn === true) ? (
 
 
-            <>
-            <Header
-                setLoggedIn = {setLoggedIn}
-                currentUser = {currentUser}
-            />
+                <>
+                    <Header
+                        setLoggedIn={setLoggedIn}
+                        currentUser={currentUser}
+                    />
 
-            <Switch>
+                    <Switch>
 
-                <Route path='/properties/:id'>
-                    <CurrentProperty
-                        setCurrentProperty={setCurrentProperty} 
-                        currentProperty={currentProperty}
-                        currentUser = {currentUser}
+                        <Route path='/properties/:id'>
+                            <CurrentProperty
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                                currentUser={currentUser}
                             />
                         </Route>
 
@@ -150,6 +174,8 @@ function App()
                                 currentProperty={currentProperty}
                                 searchTerm={searchTerm}
                                 changeSearch={changeSearch}
+                                userId={userId}
+                                setFavorites={setFavorites}
                             />
                         </Route>
 
@@ -166,8 +192,8 @@ function App()
                             />
                         </Route>
 
-            </Switch>
-            </>
+                    </Switch>
+                </>
             ) : (
                 // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />
