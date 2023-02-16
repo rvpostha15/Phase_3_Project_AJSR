@@ -55,7 +55,7 @@ code {
 }
 
 
-.property_card {
+.individual-property-box {
   cursor: pointer;
   border-color: #000;
   display: inline-block;

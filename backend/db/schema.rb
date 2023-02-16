@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 2023_02_15_194616) do
+ActiveRecord::Schema.define(version: 2023_02_15_204017) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "property_id"
