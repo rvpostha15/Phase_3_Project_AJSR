@@ -73,7 +73,7 @@ input:focus {
 
 .login-btn {
     width: 40%;
-    height: 3em;
+    height: 60px;
     background-color: #678D58;
     display: flex;
     justify-content: center;
@@ -81,7 +81,14 @@ input:focus {
     transition: 0.5s;
     border-radius: 0.25em;
     cursor: pointer;
-    
+}
+
+.login-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    min-width: 350px;
 }
 
 .login-btn:hover {
@@ -91,6 +98,7 @@ input:focus {
 .text {
     position: relative;
     bottom: 0.5%;
+
     
 }
 

@@ -35,20 +35,20 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
     const mappedReviews = currentProperty.reviews.map(function (review)
     {
         return (
-            <div>
-                <p>{`User: ${review.user.username}`}</p>
-                <p>{`Review: ${review.text}`}</p>
+            <div className="posted-reviews-container">
+                <p className="user-name-for-review">{`User: ${review.user.username}`}</p>
+                <p className="review-written">{`Review: ${review.text}`}</p>
             </div>
         )
     })
 
     return (
-        <div className="">
-            <h3 className="property_title">{currentProperty.title}</h3>
-            <p>Street Address: {currentProperty.street_address}</p>
-            <p>City: {currentProperty.city}</p>
-            <p>State: {currentProperty.state}</p>
-            <p>Price per night: {currentProperty.price_per_night}</p>
+        <div className="current-card-container">
+            <h3 className="current-title-name">{currentProperty.title}</h3>
+            <p className="current-title-address">Street Address:{currentProperty.street_address}</p>
+            <p className="current-title-address">City: {currentProperty.city}</p>
+            <p className="current-title-address">State: {currentProperty.state}</p>
+            <p className="current-title-price">Price per night: {currentProperty.price_per_night}</p>
             <div>
                 {/* Replaces Button Element */}
                 {(available === false) ? (<h3>Seat's taken</h3>) :
@@ -58,9 +58,11 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
                     >Book</button>}
                 <button className="btn2">❤️</button>
             </div>
-            <h2>Reviews:</h2>
-            <NavLink to='/properties/new_review'>Leave a Review</NavLink>
+            <div className="review-section">
+            <h2 className="review-header">Reviews:</h2>
+            <NavLink className= "leave-review" to='/properties/new_review'>Leave a Review</NavLink>
             {mappedReviews}
+            </div>
         </div>
     )
 }
