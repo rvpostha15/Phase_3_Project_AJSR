@@ -54,6 +54,7 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty })
                 <button className="btn2">❤️</button>
             </div>
             <h2>Reviews:</h2>
+            <button>Leave a Review</button>
             {mappedReviews}
         </div>
     )

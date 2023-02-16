@@ -22,7 +22,9 @@ function PropertyContainer({ properties, currentProperty, setCurrentProperty, se
                 searchTerm={searchTerm}
                 changeSearch={changeSearch}
             />
-            {mappedProperties}
+            <div className='property-box-container'>
+                {mappedProperties}
+            </div>
         </div>
     )
 }

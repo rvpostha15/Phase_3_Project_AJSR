@@ -45,7 +45,7 @@ function App()
                 // console.log(data)
                 return setProperties(data)
             })
-    }, [])
+    }, [currentProperty])
 
     // useEffect(function ()
     // {

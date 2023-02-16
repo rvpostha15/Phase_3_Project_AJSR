@@ -73,16 +73,7 @@ code {
 }
 
 .individual-property-box {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  margin-bottom: 20px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); */
+  text-decoration: none;
   width: 300px;
   margin: 20px;
   padding: 20px;
@@ -121,6 +112,7 @@ code {
 }
 
 .like-button {
+  cursor: pointer;
   background-color: white;
   border: 1px solid black;
   border-radius: 50%;
@@ -149,6 +141,8 @@ code {
   font-size: 16px;
   font-weight: bold;
   transition: all 0.3s ease-in-out;
+  max-width: 120px;
+  margin: auto;
  ;
 
 }
@@ -156,6 +150,11 @@ code {
 .book-button:hover{
   background-color: #678D58;
 }
+
+.my-btns{
+  display: flex;
+}
+
 .property-image {
   position: static;
   width: 100%;
