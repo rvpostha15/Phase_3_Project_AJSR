@@ -1,15 +1,18 @@
 class User < ActiveRecord::Base
     has_many :reviews
-    has_many :properties, through: :reviews
+    has_many :properties, through: :reviews, source: :property
+    has_many :favorites
+    has_many :properties, through: :favorites, source: :property 
 
     def full_name
         "#{self.first_name} #{self.last_name}"
     end
 
-    # def self.email_login(e_login)
-    #     find_by(email: e_login)
-    # end
+    def favorite_properties 
+        self.favorites.map do |favorite|
+            favorite.property
+        end
+    end
 
 end
 
-# User.find_by(email: "ron@example.com")

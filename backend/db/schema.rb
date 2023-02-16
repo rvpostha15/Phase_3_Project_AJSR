@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_14_121835) do
+ActiveRecord::Schema.define(version: 2023_02_15_204017) do
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "property_id"
+    t.integer "user_id"
+  end
 
   create_table "landlords", force: :cascade do |t|
     t.string "first_name"
@@ -23,7 +28,7 @@ ActiveRecord::Schema.define(version: 2023_02_14_121835) do
     t.string "city"
     t.string "state"
     t.integer "price_per_night"
-    t.boolean "available?"
+    t.boolean "available"
     t.integer "user_id"
     t.integer "landlord_id"
   end

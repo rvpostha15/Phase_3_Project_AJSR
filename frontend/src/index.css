@@ -7,6 +7,13 @@ code {
     monospace;
 } 
 
+.btn {
+  cursor: pointer;
+}
+.btn2 {
+  cursor: grab;
+}
+
 .title {
   font-size: 70px;
   font-weight: bold;
@@ -127,6 +134,7 @@ code {
   ;
 }
 
+
 /* turns black when you hover: */
 .like-button:hover{
   background-color: #678D58;
@@ -142,6 +150,7 @@ code {
   font-weight: bold;
   transition: all 0.3s ease-in-out;
  ;
+
 }
 
 .book-button:hover{
