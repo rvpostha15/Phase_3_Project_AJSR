@@ -10,6 +10,7 @@ import Login from "./Login";
 import MyAccount from "./components/MyAccount";
 import FavoritePage from "./components/FavoritePage";
 import NewReview from './components/NewReview';
+import HomePage from './components/HomePage';
 
 
 function App()
@@ -142,6 +143,10 @@ function App()
 
             <Switch>
 
+                <Route exact path='/'>
+                    <HomePage/>
+                </Route>
+
                 <Route path='/properties/new_review'>
                     <NewReview
                         currentProperty={currentProperty}
@@ -157,8 +162,6 @@ function App()
                         currentUser = {currentUser}
                             />
                 </Route>
-
-                
 
                 <Route path='/properties'>
                     <PropertyContainer
