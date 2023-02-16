@@ -7,8 +7,10 @@ import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
 import Login from "./Login";
-import MyAccount from "./components/MyAccount"
-import FavoritePage from "./components/FavoritePage"
+import MyAccount from "./components/MyAccount";
+import FavoritePage from "./components/FavoritePage";
+import NewReview from './components/NewReview';
+import HomePage from './components/HomePage';
 
 
 function App()
@@ -23,6 +25,7 @@ function App()
     const [currentUser, setCurrentUser] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
     const [favorites, setFavorites] = useState([])
+    
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -45,7 +48,7 @@ function App()
                 console.log(data)
                 return setProperties(data)
             })
-    }, [])
+    }, [currentProperty])
 
     useEffect(function ()
     {
@@ -136,15 +139,7 @@ function App()
         })
     }
 
-    // function handleNewLike(newLike)
-    // {
-    //     useEffect(() =>
-    //     {
-    //         fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
-    //             .then((r) => r.json())
-    //             .then((data) => setFavorites(data));
-    //     }, [])
-    // }
+
 
     return (
         <div className='App'>
@@ -159,15 +154,29 @@ function App()
 
                     <Switch>
 
-                        <Route path='/properties/:id'>
-                            <CurrentProperty
-                                setCurrentProperty={setCurrentProperty}
-                                currentProperty={currentProperty}
-                                currentUser={currentUser}
-                            />
-                        </Route>
 
-                        <Route path='/properties'>
+                <Route exact path='/'>
+                    <HomePage/>
+                </Route>
+
+                <Route path='/properties/new_review'>
+                    <NewReview
+                        currentProperty={currentProperty}
+                        setCurrentProperty={setCurrentProperty}
+                        currentUser={currentUser}
+                    />
+                </Route>
+
+                <Route path='/properties/:id'>
+                    <CurrentProperty
+                        setCurrentProperty={setCurrentProperty} 
+                        currentProperty={currentProperty}
+                        currentUser = {currentUser}
+                            />
+                </Route>
+
+
+                 <Route path='/properties'>
                             <PropertyContainer
                                 properties={filteredProperties}
                                 setCurrentProperty={setCurrentProperty}
@@ -186,11 +195,11 @@ function App()
                             />
                         </Route>
 
-                        <Route path='/:user'>
-                            <MyAccount
-                                currentUser={currentUser}
-                            />
-                        </Route>
+                <Route path='/:user'>
+                    <MyAccount
+                        currentUser={currentUser}
+                    />
+                </Route>
 
                     </Switch>
                 </>

@@ -6,7 +6,11 @@ class ReviewsController < ApplicationController
     end
 
     post '/reviews' do 
-        review = Review.create(params)
+        review = Review.create(
+            text: params[:text],
+            user_id: params[:user_id],
+            property_id: params[:property_id]
+        )
         review.to_json
     end
 
