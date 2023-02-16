@@ -1,13 +1,14 @@
 import FavoritePropertyCard from "./FavoritePropertyCard"
 
-function favorite_page({ favorites, userId, setCurrentFavorite, setCurrentProperty })
+function FavoritePage({ favorites, userId, setCurrentFavorite, setCurrentProperty })
 {
     console.log(favorites)
-    const mappedProperties = favorites.map(function (favorite)
+
+    const mappedProperties = favorites.favorites.map(function (favorite)
     {
         return <FavoritePropertyCard
             key={favorite.id}
-            property={favorite}
+            favorite={favorite}
             setCurrentFavorite={setCurrentFavorite}
             userId={userId}
             setCurrentProperty={setCurrentProperty}
@@ -20,4 +21,4 @@ function favorite_page({ favorites, userId, setCurrentFavorite, setCurrentProper
     )
 }
 
-export default favorite_page
+export default FavoritePage

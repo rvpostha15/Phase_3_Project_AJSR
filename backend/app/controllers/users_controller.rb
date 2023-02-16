@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id/favorite_properties' do 
-        user = User.find(params[:id]).favorite_properties
+        user = User.find(params[:id])
         user.to_json(include: {favorites: {include: :property}})
     end
 

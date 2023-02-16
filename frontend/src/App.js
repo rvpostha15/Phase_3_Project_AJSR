@@ -119,6 +119,8 @@ function App()
             .then((data) => setFavorites(data));
     }, [userId])
 
+    console.log("Favorites:", favorites)
+
     const changeSearch = (value) =>
     {
         setSearchTerm(value)
