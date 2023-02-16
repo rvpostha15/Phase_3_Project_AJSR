@@ -8,4 +8,9 @@ class FavoritesController < ApplicationController
         favorite = Favorite.create(params)
         favorite.to_json
     end
+
+    delete '/favorites/:id' do 
+        favorite = Favorite.find(params[:id])
+        favorite.destroy
+    end
 end

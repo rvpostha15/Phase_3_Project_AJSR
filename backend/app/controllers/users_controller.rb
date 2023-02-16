@@ -10,11 +10,6 @@ class UsersController < ApplicationController
         users.to_json(include: {favorites: {include: :property}})
     end
 
-    get '/users/:id' do 
-        user = User.find(params[:id])
-        user.to_json
-    end
-
     get '/users/:id/favorite_properties' do 
         user = User.find(params[:id]).favorite_properties
         user.to_json(include: {favorites: {include: :property}})
@@ -33,7 +28,7 @@ class UsersController < ApplicationController
     # fetch current user data
     get '/users/:id' do
         user = User.find(params[:id])
-        user.to_json
+        user.to_json(include: {reviews: {include: :property}})
     end
 
 end

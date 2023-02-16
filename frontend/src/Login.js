@@ -29,12 +29,11 @@ function Login({ login, error })
     }
     return (
         <div className="cover">
-            <h1>Login</h1>
+            <h2>Login</h2>
             <div className="form-group">
                 <form onSubmit={handleSubmit} >
-                    <input type="text" placeholder="name" id="name" onChange={handleNameChange} value={details.name} />
-                    <input type="email" placeholder="email" onChange={handleEmailChange} value={details.email} />
-                    <input type="password" placeholder="password" onChange={handlePasswordChange} value={details.password} />
+                    <input className="login-item" type="email" placeholder="email" onChange={handleEmailChange} value={details.email} />
+                    <input className="login-item" type="password" placeholder="password" onChange={handlePasswordChange} value={details.password} />
                     <input className="login-btn" type="submit" value="login" />
                 </form>
             </div>
