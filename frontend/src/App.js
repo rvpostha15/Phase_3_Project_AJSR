@@ -11,6 +11,7 @@ import MyAccount from "./components/MyAccount";
 import FavoritePage from "./components/FavoritePage";
 import NewReview from './components/NewReview';
 import HomePage from './components/HomePage';
+import EditReviewForm from './components/EditReviewForm';
 
 
 function App()
@@ -27,6 +28,7 @@ function App()
     const [favorites, setFavorites] = useState([])
     const [hotProperties, setHotProperties] = useState([])
     const [favoriteCount, setFavoriteCount] = useState([])
+    const [editReview, setEditReview] = useState(null)
 
 
     // WORK THIS OUT JERROD
@@ -56,7 +58,7 @@ function App()
                 console.log(data)
                 return setProperties(data)
             })
-    }, [currentProperty])
+    }, [currentProperty, editReview])
 
     useEffect(function ()
     {
@@ -107,9 +109,8 @@ function App()
         fetch(`http://localhost:9292/users/${userId}`)
             .then((r) => r.json())
             .then((data) => setCurrentUser(data));
-    }, [userId, properties])
+    }, [userId, properties, editReview])
 
-    console.log("currentuser:", currentUser)
 
     useEffect(() =>
     {
@@ -149,27 +150,18 @@ function App()
         })
     }
 
-    // const handleDeleteReview = () => {
-    //     console.log(`Delete id`)
-    //     fetch(`http://localhost:9292/reviews/id`, {
-    //         method: "DELETE",
-    //     })
-    //     .then(r => r.json())
-    //     .then(data => (console.log(data)))
-    //     .catch(error => (alert(error)))
-    // }
+    const handleEditReview = (review) => {
+        setEditReview(review)
+    }
 
     return (
         <div className='App'>
             {(loggedIn === true) ? (
-
-
                 <div class="banner">
                     <Header
                         setLoggedIn={setLoggedIn}
                         currentUser={currentUser}
                     />
-
 
                     <Switch>
                         <Route exact path='/'>
@@ -200,7 +192,6 @@ function App()
                             />
                         </Route>
 
-
                         <Route path='/properties'>
                             <PropertyContainer
                                 properties={filteredProperties}
@@ -220,15 +211,22 @@ function App()
                             />
                         </Route>
 
+                        <Route path='/:user/:id/edit'>
+                            <EditReviewForm
+                                editReview={editReview}
+                                setEditReview={setEditReview}
+                            />
+                        </Route>
 
-                <Route path='/:user'>
-                    <MyAccount
-                        currentUser={currentUser}
-                        setProperties={setProperties}
-                    />
-                </Route>
-
-
+                        <Route path='/:user'>
+                            <MyAccount
+                                currentUser={currentUser}
+                                setProperties={setProperties}
+                                handleEditReview={handleEditReview}
+                            />
+                        </Route>
+                            
+                        
                     </Switch>
                 </div>
             ) : (

@@ -1,7 +1,7 @@
 import MyReview from "./MyReview"
 
 
-function MyAccount ({ currentUser, setProperties}) {
+function MyAccount ({ currentUser, setProperties, handleEditReview }) {
 
 console.log("me:", currentUser)
 
@@ -9,8 +9,10 @@ const { email, first_name, last_name, phone_number, password, username, id, revi
 
 const myReviews = reviews.map((review) =>
     <MyReview
+        currentUser={currentUser}
         review={review}
         setProperties={setProperties}
+        handleEditReview={handleEditReview}
     />
 )
 
