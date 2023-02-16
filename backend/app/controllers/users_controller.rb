@@ -6,8 +6,18 @@ class UsersController < ApplicationController
     end
 
     get '/users' do 
-        users = User.all 
-        users.to_json
+        users = User.all
+        users.to_json(include: {favorites: {include: :property}})
+    end
+
+    get '/users/:id' do 
+        user = User.find(params[:id])
+        user.to_json
+    end
+
+    get '/users/:id/favorite_properties' do 
+        user = User.find(params[:id]).favorite_properties
+        user.to_json(include: {favorites: {include: :property}})
     end
 
     post '/users' do 
