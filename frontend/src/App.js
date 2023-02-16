@@ -25,7 +25,9 @@ function App()
     const [currentUser, setCurrentUser] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
     const [favorites, setFavorites] = useState([])
-    
+    const [hotProperties, setHotProperties] = useState([])
+    const [favoriteCount, setFavoriteCount] = useState([])
+
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -66,23 +68,23 @@ function App()
             .then(function (data)
             {
                 console.log(data)
-                // return setProperties(data)
+                return setHotProperties(data)
             })
     }, [])
 
-    // useEffect(function ()
-    // {
-    //     fetch("http://localhost:9292/properties/favorites")
-    //         .then(function (resp)
-    //         {
-    //             return resp.json()
-    //         })
-    //         .then(function (data)
-    //         {
-    //             console.log(data)
-    //             return setFavorites(data)
-    //         })
-    // }, [])
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/properties/favorites")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                return setFavoriteCount(data)
+            })
+    }, [])
 
     //Initial Fetch All User Data
     useEffect(function ()
@@ -162,37 +164,44 @@ function App()
             {(loggedIn === true) ? (
 
 
-                <>
+                <div class="banner">
                     <Header
                         setLoggedIn={setLoggedIn}
                         currentUser={currentUser}
                     />
 
+
                     <Switch>
-
-
-                <Route exact path='/'>
-                    <HomePage/>
-                </Route>
-
-                <Route path='/properties/new_review'>
-                    <NewReview
-                        currentProperty={currentProperty}
-                        setCurrentProperty={setCurrentProperty}
-                        currentUser={currentUser}
-                    />
-                </Route>
-
-                <Route path='/properties/:id'>
-                    <CurrentProperty
-                        setCurrentProperty={setCurrentProperty} 
-                        currentProperty={currentProperty}
-                        currentUser = {currentUser}
+                        <Route exact path='/'>
+                            <HomePage
+                                hotProperties={hotProperties}
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                                searchTerm={searchTerm}
+                                changeSearch={changeSearch}
+                                userId={userId}
+                                setFavorites={setFavorites}
                             />
-                </Route>
+                        </Route>
+
+                        <Route path='/properties/new_review'>
+                            <NewReview
+                                currentProperty={currentProperty}
+                                setCurrentProperty={setCurrentProperty}
+                                currentUser={currentUser}
+                            />
+                        </Route>
+
+                        <Route path='/properties/:id'>
+                            <CurrentProperty
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                                currentUser={currentUser}
+                            />
+                        </Route>
 
 
-                 <Route path='/properties'>
+                        <Route path='/properties'>
                             <PropertyContainer
                                 properties={filteredProperties}
                                 setCurrentProperty={setCurrentProperty}
@@ -211,6 +220,7 @@ function App()
                             />
                         </Route>
 
+
                 <Route path='/:user'>
                     <MyAccount
                         currentUser={currentUser}
@@ -218,14 +228,15 @@ function App()
                     />
                 </Route>
 
+
                     </Switch>
-                </>
+                </div>
             ) : (
                 // a login route/path would probably be helpful. as is, we can login while remaining in the path where we log out
                 <Login login={login} error={error} />
             )
             }
-        </div>
+        </div >
     )
 }
 
