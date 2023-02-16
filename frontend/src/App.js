@@ -7,7 +7,10 @@ import PropertyContainer from './components/PropertyContainer';
 import Header from './components/Header';
 import CurrentProperty from './components/CurrentProperty';
 import Login from "./Login";
-import MyAccount from "./components/MyAccount"
+import MyAccount from "./components/MyAccount";
+import FavoritePage from "./components/FavoritePage";
+import NewReview from './components/NewReview';
+import HomePage from './components/HomePage';
 
 
 function App()
@@ -21,6 +24,8 @@ function App()
     const [userId, setUserId] = useState(null)
     const [currentUser, setCurrentUser] = useState('')
     const [searchTerm, setSearchTerm] = useState('')
+    const [favorites, setFavorites] = useState([])
+    
 
     // WORK THIS OUT JERROD
     const [user, setUser] = useState({ name: "", email: "" })
@@ -43,7 +48,35 @@ function App()
                 console.log(data)
                 return setProperties(data)
             })
+    }, [currentProperty])
+
+    useEffect(function ()
+    {
+        fetch("http://localhost:9292/properties/top_three")
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (data)
+            {
+                console.log(data)
+                // return setProperties(data)
+            })
     }, [])
+
+    // useEffect(function ()
+    // {
+    //     fetch("http://localhost:9292/properties/favorites")
+    //         .then(function (resp)
+    //         {
+    //             return resp.json()
+    //         })
+    //         .then(function (data)
+    //         {
+    //             console.log(data)
+    //             return setFavorites(data)
+    //         })
+    // }, [])
 
     //Initial Fetch All User Data
     useEffect(function ()
@@ -55,7 +88,7 @@ function App()
             })
             .then(function (data)
             {
-                console.log(data)
+                // console.log(data)
                 return setUserData(data)
             })
     }, [])
@@ -68,7 +101,15 @@ function App()
             .then((data) => setCurrentUser(data));
     }, [userId])
 
-    const changeSearch = (value) => {
+    useEffect(() =>
+    {
+        fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
+            .then((r) => r.json())
+            .then((data) => setFavorites(data));
+    }, [userId])
+
+    const changeSearch = (value) =>
+    {
         setSearchTerm(value)
     }
 
@@ -98,39 +139,67 @@ function App()
         })
     }
 
+
+
     return (
         <div className='App'>
             {(loggedIn === true) ? (
 
-            <>
-            <Header
-                setLoggedIn = {setLoggedIn}
-                currentUser = {currentUser}
-            />
 
-            <Switch>
+                <>
+                    <Header
+                        setLoggedIn={setLoggedIn}
+                        currentUser={currentUser}
+                    />
+
+                    <Switch>
+
+
+                <Route exact path='/'>
+                    <HomePage/>
+                </Route>
+
+                <Route path='/properties/new_review'>
+                    <NewReview
+                        currentProperty={currentProperty}
+                        setCurrentProperty={setCurrentProperty}
+                        currentUser={currentUser}
+                    />
+                </Route>
 
                 <Route path='/properties/:id'>
-                    <CurrentProperty 
+                    <CurrentProperty
+                        setCurrentProperty={setCurrentProperty} 
                         currentProperty={currentProperty}
-                    />
+                        currentUser = {currentUser}
+                            />
                 </Route>
 
-                <Route path='/properties'>
-                    <PropertyContainer 
-                        properties={filteredProperties}
-                        setCurrentProperty={setCurrentProperty}
-                        currentProperty={currentProperty} 
-                        searchTerm={searchTerm}
-                        changeSearch={changeSearch}
-                    />
-                </Route>
+
+                 <Route path='/properties'>
+                            <PropertyContainer
+                                properties={filteredProperties}
+                                setCurrentProperty={setCurrentProperty}
+                                currentProperty={currentProperty}
+                                searchTerm={searchTerm}
+                                changeSearch={changeSearch}
+                                userId={userId}
+                                setFavorites={setFavorites}
+                            />
+                        </Route>
+
+                        <Route path='/favorites'>
+                            <FavoritePage
+                                userId={userId}
+                                favorites={favorites}
+                            />
+                        </Route>
 
                 <Route path='/:user'>
-                    <MyAccount 
-                         currentUser={currentUser}
+                    <MyAccount
+                        currentUser={currentUser}
                     />
-                 </Route>
+                </Route>
 
                     </Switch>
                 </>

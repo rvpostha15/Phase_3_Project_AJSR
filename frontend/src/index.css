@@ -1,15 +1,77 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+ body {
+  background-color: white;
 }
+
+/* #slide {
+  width: 100%;
+  height: 100vh;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: repeat;
+  backface-visibility: hidden;
+  animation: slide normal 90s;
+  animation-timing-function: ease-in-out;
+  background-image: url('./img/img1.jpg');
+}
+
+@keyframes slide {
+  0% {
+    background-image: url('./img/img1.jpg');
+  }
+
+  10% {
+    background-image: url('./img/img2.jpg');
+  }
+
+  20% {
+    background-image: url('./img/img3.jpg');
+  }
+
+  30% {
+    background-image: url('./img/img4.jpg');
+  }
+
+  40% {
+    background-image: url('./img/img5.jpg');
+  }
+
+  50% {
+    background-image: url('./img/img6.jpg');
+  }
+
+  60% {
+    background-image: url('./img/img7.jpg');
+  }
+
+  70% {
+    background-image: url('./img/img8.jpg');
+  }
+
+  80% {
+    background-image: url('./img/img9.jpg');
+  }
+
+  90% {
+    background-image: url('./img/img10.jpg');
+  }
+
+  100% {
+    background-image: url('./img/img10.jpg')
+  }
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+} 
+
+.btn {
+  cursor: pointer;
+}
+
+.btn2 {
+  cursor: grab;
 }
 
 .title {
@@ -17,10 +79,12 @@ code {
   font-weight: bold;
   text-align: center;
   text-decoration:none;
-  color:#000;
   display:block;
-  padding:13px;
   margin-bottom: 50px;
+  background-color: black;
+  padding: 50px;
+  text-align: center;
+  color:white
 }
 
 
@@ -33,33 +97,145 @@ code {
   width: auto;
 }
 
-.navbar {
+.flex_container {
+  /* /* /* /* /* margin: 10px;
+  text-decoration: none; */
+  background: #678D58;  
+  color:white; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 30px; 
   margin: 10px;
-  text-decoration: none;
-  background: yellow;
-  color:#000;
 }
 
-.navbar:focus {
-  transform: rotate(6deg);
-  transition: transform .15s linear;
-  font-weight: bold;
-  font-size: 22px;
-}
-
-
-.property_card {
-  cursor: pointer;
-  border-color: #000;
-  display: inline-block;
-  padding: 5px;
-  margin: 1%;
-  background: red;
-  text-decoration:none;
-  color:#000;
-}
-
-.property_title {
-  background-color: aquamarine;
+.navbar{
+  display: flex;
+  list-style: none;
+  margin: auto;
+  padding:0;
   text-align: center;
+  color:black;
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: bold;
+  position: relative;
+  padding-right: 100px;
 }
+
+
+/* //////////new//////////////// */
+.property-box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+}
+
+.individual-property-box {
+  text-decoration: none;
+  width: 300px;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 25px;
+  border: 3px solid #ccc;
+  text-align: center;
+  position: relative;
+  background-color: white;
+}
+
+/* border turns green when hover  */
+.individual-property-box:hover {
+  border-color: #678d58;
+  box-shadow: 0 1px 4px rgba(103, 141, 88, 0.3);
+}
+
+.name-title{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px; 
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: black
+}
+.address {
+  font-size: 15px;
+  font-weight: bold;
+  margin-top: 10px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  color: black
+}
+.price {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.like-button {
+  cursor: pointer;
+
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+  
+  ;
+}
+
+
+/* turns black when you hover: */
+.like-button:hover{
+  background-color: #678D58;
+  color: #fff;
+}
+.book-button {
+  background-color:black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  max-width: 120px;
+  margin: auto;
+ ;
+
+}
+
+.book-button:hover{
+  background-color: #678D58;
+
+}
+
+.my-btns{
+  display: flex;
+}
+
+.property-image {
+  position: static;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+
+
+.personal-account{
+  width: 300px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  text-align: center;
+  position: relative;
+  background-color: white;
+}
+
