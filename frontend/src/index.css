@@ -88,6 +88,22 @@ code {
 }
 
 
+.review {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration:none;
+  display:block;
+  margin-bottom: 50px;
+  margin-top: 50px;
+  background-color: black;
+  line-height: 50px;
+  text-align: center;
+  color:white;
+  height: 50px;
+}
+
+
 .flex_container {
   display: flex;
   justify-content: space-evenly;
@@ -123,6 +139,7 @@ code {
   position: relative;
   padding-right: 100px;
 }
+
 
 
 /* //////////new//////////////// */

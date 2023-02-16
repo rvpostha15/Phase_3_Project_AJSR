@@ -32,6 +32,12 @@ function App()
     // FOR JERROD
     const [error, setError] = useState("")
 
+    const { reviews } = currentUser
+    
+    // const review = reviews.map(r => {
+    //     console.log(r)
+    // })
+    console.log(reviews)
 
 
 
@@ -88,7 +94,7 @@ function App()
             })
             .then(function (data)
             {
-                // console.log(data)
+                console.log("usersdata:", data)
                 return setUserData(data)
             })
     }, [])
@@ -99,7 +105,9 @@ function App()
         fetch(`http://localhost:9292/users/${userId}`)
             .then((r) => r.json())
             .then((data) => setCurrentUser(data));
-    }, [userId])
+    }, [userId, properties])
+
+    console.log("currentuser:", currentUser)
 
     useEffect(() =>
     {
@@ -139,7 +147,15 @@ function App()
         })
     }
 
-
+    // const handleDeleteReview = () => {
+    //     console.log(`Delete id`)
+    //     fetch(`http://localhost:9292/reviews/id`, {
+    //         method: "DELETE",
+    //     })
+    //     .then(r => r.json())
+    //     .then(data => (console.log(data)))
+    //     .catch(error => (alert(error)))
+    // }
 
     return (
         <div className='App'>
@@ -198,6 +214,7 @@ function App()
                 <Route path='/:user'>
                     <MyAccount
                         currentUser={currentUser}
+                        setProperties={setProperties}
                     />
                 </Route>
 
