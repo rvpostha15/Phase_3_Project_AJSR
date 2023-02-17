@@ -264,12 +264,35 @@ code {
   max-width: 120px;
   margin: auto;
   ;
-
 }
 
+.review-text {
+  cursor: default;
+}
+.rev-button-box {
+  justify-content: space-between;
+}
+.rev-button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  max-width: 120px;
+  margin: 15px 15px 1px
+}
+
+.rev-button:hover {
+  background-color: #678D58;
+}
 .book-button:hover {
   background-color: #678D58;
-
 }
 
 .my-btns {
