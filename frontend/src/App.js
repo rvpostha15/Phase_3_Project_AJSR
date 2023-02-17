@@ -119,7 +119,7 @@ function App()
         fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
             .then((r) => r.json())
             .then((data) => setFavorites(data));
-    }, [userId])
+    }, [userId, currentUser])
 
     console.log("Favorites:", favorites)
 
@@ -193,6 +193,8 @@ function App()
                                 setCurrentProperty={setCurrentProperty}
                                 currentProperty={currentProperty}
                                 currentUser={currentUser}
+                                setFavorites={setFavorites}
+                                userId={userId}
                             />
                         </Route>
 
@@ -214,6 +216,7 @@ function App()
                                 favorites={favorites}
                                 setCurrentFavorite={setCurrentFavorite}
                                 setCurrentProperty={setCurrentProperty}
+                                setCurrentUser={setCurrentUser}
                             />
                         </Route>
 

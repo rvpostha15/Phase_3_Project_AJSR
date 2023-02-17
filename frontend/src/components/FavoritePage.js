@@ -1,6 +1,6 @@
 import FavoritePropertyCard from "./FavoritePropertyCard"
 
-function FavoritePage({ favorites, userId, setCurrentFavorite, setCurrentProperty })
+function FavoritePage({ favorites, userId, setCurrentFavorite, setCurrentProperty, setCurrentUser })
 {
     console.log(favorites)
 
@@ -12,6 +12,7 @@ function FavoritePage({ favorites, userId, setCurrentFavorite, setCurrentPropert
             setCurrentFavorite={setCurrentFavorite}
             userId={userId}
             setCurrentProperty={setCurrentProperty}
+            setCurrentUser={setCurrentUser}
         />
     })
     return (
