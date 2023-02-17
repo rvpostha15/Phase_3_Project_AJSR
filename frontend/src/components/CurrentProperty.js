@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom'
 
-function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
+function CurrentProperty({ currentProperty, currentUser, setCurrentProperty, setFavorites, userId }) {
 
     const { available, id } = currentProperty
 
@@ -42,6 +42,34 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
         )
     })
 
+    function handleLikeClick(e)
+    {
+        e.preventDefault()
+        let formData = {
+            property_id: currentProperty.id,
+            user_id: userId
+        }
+
+        fetch("http://localhost:9292/favorites", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(function (resp)
+            {
+                return resp.json()
+            })
+            .then(function (newLike)
+            {
+                console.log(newLike)
+                fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
+                    .then((r) => r.json())
+                    .then((data) => setFavorites(data));
+            })
+    }
+
     return (
         <div className="current-card-container">
             <h3 className="current-title-name">{currentProperty.title}</h3>
@@ -56,7 +84,7 @@ function CurrentProperty({ currentProperty, currentUser, setCurrentProperty }) {
                         className="btn"
                         onClick={handleBook}
                     >Book</button>}
-                <button className="btn2">❤️</button>
+                <button onClick={handleLikeClick} className="btn2"> ❤️</button>
             </div>
             <div className="review-section">
             <h2 className="review-header">Reviews:</h2>

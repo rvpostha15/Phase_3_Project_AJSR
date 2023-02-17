@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom'
 
-function FavoritePropertyCard({ favorite, currentProperty, setCurrentProperty, userId, setFavorites, setCurrentFavorite })
+function FavoritePropertyCard({ favorite, currentProperty, setCurrentProperty, userId, setFavorites, setCurrentFavorite, setCurrentUser })
 {
     const [favoriteList, setFavoriteList] = useState([])
-    console.log(favorite)
+    // console.log(favorite)
 
     const { id, property } = favorite
 
@@ -22,13 +22,6 @@ function FavoritePropertyCard({ favorite, currentProperty, setCurrentProperty, u
             })
     }, [])
 
-
-    const handlePropertyClick = (e) =>
-    {
-        setCurrentProperty({ ...property, [e.target.name]: e.target.value })
-    }
-
-
     function handleRemoveClick(e)
     {
         fetch(`http://localhost:9292/favorites/${id}`, {
@@ -41,27 +34,24 @@ function FavoritePropertyCard({ favorite, currentProperty, setCurrentProperty, u
             {
                 return resp.json()
             })
-            .then(function ()
-            {
-                fetch(`http://localhost:9292/users/${userId}/favorite_properties`)
+            .then( (data) => {
+                fetch(`http://localhost:9292/users/${userId}`)
                     .then(function (resp)
                     {
                         return resp.json()
                     })
                     .then(function (data)
                     {
-                        return setFavorites(data)
+                        return setCurrentUser(data)
                     });
             })
     }
 
     return (
 
-        // <Link
-        //     to={`/properties/${property.title}`}
-        //     onClick={handlePropertyClick}
-        // >
-        <div className="individual-property-box">
+        <div className="individual-property-box"
+            to={`/properties/${property.title}`}
+        >       
             <h3 className="name-title">{property.title}</h3>
             <p className="address">Street Address: {property.street_address}</p>
             <p className="address">City: {property.city}</p>
@@ -72,9 +62,6 @@ function FavoritePropertyCard({ favorite, currentProperty, setCurrentProperty, u
                 <p className="book-button"> {(property.available === false) ? "Unavailable" : "Available"}</p>
             </div>
         </div>
-        // </Link>
-
-
     )
 }
 
