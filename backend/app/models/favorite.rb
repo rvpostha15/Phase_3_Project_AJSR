@@ -12,16 +12,9 @@ class Favorite < ActiveRecord::Base
         Property.find(id)
     end
 
-        # counts kisses/yeses for each recipe
-        def favorites_count
-            self.favorites.count
-        end
-    
-        # calculates the top 5 kissed recipes
-        def self.top_five_kiss_count
-            kisses = self.all.sort_by do |recipe|
-                recipe.kiss_count
-            end
-            kisses.reverse.first(5)
-        end
+    def self.find_id(id)
+        self.find_by(property_id: id)
+    end
+
+
 end

@@ -1,10 +1,18 @@
-import PropertyCard from "./PropertyCard"
+import FavoritePropertyCard from "./FavoritePropertyCard"
 
-function favorite_page({ favorites, userID })
+function FavoritePage({ favorites, userId, setCurrentFavorite, setCurrentProperty })
 {
-    const mappedProperties = favorites.map(function (favorite)
+    console.log(favorites)
+
+    const mappedProperties = favorites.favorites.map(function (favorite)
     {
-        return <PropertyCard property={favorite} />
+        return <FavoritePropertyCard
+            key={favorite.id}
+            favorite={favorite}
+            setCurrentFavorite={setCurrentFavorite}
+            userId={userId}
+            setCurrentProperty={setCurrentProperty}
+        />
     })
     return (
         <div className="property-box-container">
@@ -13,4 +21,4 @@ function favorite_page({ favorites, userID })
     )
 }
 
-export default favorite_page
+export default FavoritePage

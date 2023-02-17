@@ -14,11 +14,11 @@ function Header({ setLoggedIn, currentUser })
         <div id='slide'>
             <button onClick={handleLogout}>Logout</button>
             <div className="flex_container">
-                <Link to="/" className="title">StayOver</Link>
+                <p id='title'>STAYOVER</p>
+                <Link to="/" className="navbar">Home</Link>
                 <NavLink to="/properties" className="navbar" >Properties</NavLink>
                 <NavLink to="/favorites" className="navbar">Favorites</NavLink>
                 <NavLink to={`/${currentUser.username}`} className="navbar" >My Account</NavLink>
-                {/* might be a problem with the favorites loading all properties b4 it can get to favorites */}
             </div>
         </div>
     )

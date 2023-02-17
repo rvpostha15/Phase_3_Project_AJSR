@@ -1,5 +1,5 @@
 .banner {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('./img/img1.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('./img/img8.jpg');
   width: 100%;
   min-height: 100vh;
   background-size: cover;
@@ -8,6 +8,11 @@
 
 h1 {
   color: white;
+}
+
+.homepage {
+  margin: auto;
+  text-align: center;
 }
 
 body {
@@ -86,22 +91,11 @@ code {
   cursor: grab;
 }
 
-.title {
-  font-size: 70px;
-  font-weight: bold;
+#title {
+  font-size: 50px;
+  /* font-weight: bold; */
   text-decoration: none;
   /* display: block; */
-  margin-bottom: 50px;
-  /* background-color: black; */
-  /* padding: 50px; */
-  text-align: left;
-  /* color: black; */
-  color: white;
-  /* background-color: rgba(255, 255, 255, 0.5); */
-  width: 125px;
-  /* height: 10vh; */
-  align-items: center;
-  margin: auto;
   /* border-radius: 50px; */
   cursor: pointer;
 }
@@ -111,13 +105,13 @@ code {
   font-size: 25px;
   font-weight: bold;
   text-align: center;
-  text-decoration:none;
-  display:block;
+  text-decoration: none;
+  display: block;
   margin-bottom: 50px;
   margin-top: 50px;
   background-color: black;
   line-height: 50px;
-  color:white;
+  color: white;
   height: 50px;
 }
 
@@ -160,6 +154,23 @@ code {
   text-transform: uppercase;
 }
 
+.navbar::after {
+  content: '';
+  height: 3px;
+  width: 0;
+  background: #009688;
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+  transition: 0.5s;
+}
+
+#featured {
+  color: white;
+  font-size: 40px;
+}
+
+
 /* .navbar a {
   text-decoration: none;
   color: #fff;
@@ -173,6 +184,8 @@ code {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   grid-gap: 20px;
+  text-align: center;
+  margin: auto;
 }
 
 .individual-property-box {
@@ -251,12 +264,35 @@ code {
   max-width: 120px;
   margin: auto;
   ;
-
 }
 
+.review-text {
+  cursor: default;
+}
+.rev-button-box {
+  justify-content: space-between;
+}
+.rev-button {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: black;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  max-width: 120px;
+  margin: 15px 15px 1px
+}
+
+.rev-button:hover {
+  background-color: #678D58;
+}
 .book-button:hover {
   background-color: #678D58;
-
 }
 
 .my-btns {
@@ -288,7 +324,7 @@ code {
 
 /* ///////
 current property page: */
-.current-card-container{
+.current-card-container {
   text-decoration: none;
   width: 300px;
   margin: 20px;
@@ -298,36 +334,38 @@ current property page: */
   text-align: center;
   position: relative;
   background-color: white;
-  margin:auto
-
+  margin: auto
 }
-.current-title-name{
+
+.current-title-name {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  color:black;
+  color: black;
   font-size: 32px;
   margin-bottom: 10px;
 
 }
 
-.current-title-address{
+.current-title-address {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
-.current-title-price{
+
+.current-title-price {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
-.btn{
-  background-color:black;
+
+.btn {
+  background-color: black;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -337,10 +375,11 @@ current property page: */
   transition: all 0.3s ease-in-out;
   max-width: 120px;
   margin: auto;
- ;
+  ;
 
 }
-.btn2{
+
+.btn2 {
   cursor: pointer;
 
   background-color: white;
@@ -354,6 +393,7 @@ current property page: */
   margin-right: 50px;
 
 }
+
 /* .property-details-image {
   flex-basis: 50%;
 }
@@ -365,25 +405,26 @@ current property page: */
 
 
 
-.review-header{
+.review-header {
   font-size: 28px;
   margin-bottom: 20px;
 
 }
-.leave-review{
+
+.leave-review {
   flex-basis: 90%;
   padding: 0 20px;
   box-sizing: border-box;
   color: #678D58;
-  font-size:30px
+  font-size: 30px
 }
 
-.form-style-6{
+.form-style-6 {
   background-color: pink;
- 
+
 }
 
-.search_container{
+.search_container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -397,20 +438,19 @@ current property page: */
   border-radius: 25px;
 }
 
-.user-name-for-review{
+.user-name-for-review {
   margin-top: 50px;
   font-size: 20px
-
 }
-.review-written{
+
+.review-written {
   font-size: 25px;
   margin-bottom: 20px;
 }
 
 
-.posted-reviews-container{
- padding-top: 10px;
- padding-bottom:10px;
- 
-}
+.posted-reviews-container {
+  padding-top: 10px;
+  padding-bottom: 10px;
 
+}
