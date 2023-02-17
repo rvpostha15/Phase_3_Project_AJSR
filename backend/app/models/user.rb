@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
     def favorite_properties 
         self.favorites.map do |favorite|
-            favorite.property
+            favorite
         end
     end
 

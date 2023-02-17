@@ -28,7 +28,9 @@ function App()
     const [favorites, setFavorites] = useState([])
     const [hotProperties, setHotProperties] = useState([])
     const [favoriteCount, setFavoriteCount] = useState([])
+    const [currentFavorite, setCurrentFavorite] = useState()
     const [editReview, setEditReview] = useState(null)
+
 
 
     // WORK THIS OUT JERROD
@@ -37,7 +39,7 @@ function App()
     const [error, setError] = useState("")
 
     const { reviews } = currentUser
-    
+
     // const review = reviews.map(r => {
     //     console.log(r)
     // })
@@ -118,6 +120,8 @@ function App()
             .then((r) => r.json())
             .then((data) => setFavorites(data));
     }, [userId])
+
+    console.log("Favorites:", favorites)
 
     const changeSearch = (value) =>
     {
@@ -208,6 +212,8 @@ function App()
                             <FavoritePage
                                 userId={userId}
                                 favorites={favorites}
+                                setCurrentFavorite={setCurrentFavorite}
+                                setCurrentProperty={setCurrentProperty}
                             />
                         </Route>
 
@@ -227,6 +233,7 @@ function App()
                         </Route>
                             
                         
+
                     </Switch>
                 </div>
             ) : (
